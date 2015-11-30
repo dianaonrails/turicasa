@@ -1,6 +1,7 @@
 $red:#ff1d25;
 $black:#333333;
-$grey:#cccccc;
+$light-grey:#cccccc;
+$grey:#727272;
 
 @font-face {
 	font-family: 'Charter';
@@ -61,7 +62,7 @@ $grey:#cccccc;
 			a:hover{
 				background-color: transparent;
 				text-decoration: underline;
-				color:$grey;
+				color:$light-grey;
 			}
 		}
 		li:last-child{
@@ -92,17 +93,45 @@ $grey:#cccccc;
 }
 
 hr{
-	border-color: $grey;
+	border-color: $light-grey;
 }
 
 .txt-property{
 	font-size: 1.5em;
 	font-family: 'Charter';
+	font-weight: bold;
+}
+
+.description{
+	font-family: 'Charter';
+	font-size:1.2em;
+}
+
+.dates{
+	font-family: 'Charter';
+	font-size: 1em;
+	color:$grey;
+}
+
+.btt-see-more{
+	
+	a{
+		padding-top: 2%;
+		padding-bottom: 2%;
+		padding-left: 12%;
+		padding-right: 12%;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		background-color: $black;
+		color:white;
+		font-family: 'Charter';
+	}
 }
 
 /***************FOOTER****************************/
 
 .footer-row{
+	margin-top: 3%;
 	background-color: $black;
 	ul{
 		padding-top: 3%;
