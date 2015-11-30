@@ -1,0 +1,126 @@
+$red:#ff1d25;
+$black:#333333;
+$grey:#cccccc;
+
+@font-face {
+	font-family: 'Charter';
+	src:url('../fonts/Charter.ttc') format('ttc');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/*************HEADER*********************/
+
+.flags{
+	position: absolute;
+	top: 0;
+	right: 0;
+	ul{
+		width: 50%;
+		float: right;
+		list-style: none;
+		li.flag-item{
+			width: 18%;
+			display: inline-block;
+			img{
+				width: 95%;
+			}
+		}
+	}
+}
+
+.navbar-row{
+	position: absolute;
+	width: 100%;
+	top: 8%;
+	margin: 0;
+	background-color: $red;
+	padding: 0;
+	.nav-title{
+		color:white;
+		font-size:3.4em;
+		font-family: 'Charter';
+		font-weight: bold;
+	}
+
+	.nav.navbar-nav{
+		width: 60%;
+		float: right;
+		margin-top: 2.1%;
+		li{
+			font-size: 1.3em;
+			color:white;
+			margin-right: 10%;
+			font-family: 'Charter';
+			font-weight: bold;
+			a{
+				color:white;
+				padding: 0;
+			}
+			a:hover{
+				background-color: transparent;
+				text-decoration: underline;
+				color:$grey;
+			}
+		}
+		li:last-child{
+			margin: 0;
+		}
+
+		.btt-login{
+			background-color: $black;
+			-webkit-border-radius: 84px;
+			-moz-border-radius: 84px;
+			border-radius: 84px;
+			padding: 3px 10px;
+		}
+	}
+}
+
+/******************HOMEPAGE************************/
+
+.search-home{
+	background-color: $red;
+	height: 100px;
+}
+
+.txt-center{
+	text-align: center;
+	font-family: 'Charter';
+	font-weight: bold;
+}
+
+hr{
+	border-color: $grey;
+}
+
+.txt-property{
+	font-size: 1.5em;
+	font-family: 'Charter';
+}
+
+/***************FOOTER****************************/
+
+.footer-row{
+	background-color: $black;
+	ul{
+		padding-top: 3%;
+		padding-bottom: 5%;
+		list-style: none;
+		li{
+			display: inline-block;
+			font-family: 'Charter';
+			font-weight: bold;
+			color:white;
+			margin-right: 22%;
+			font-size: 1.3em;
+			a{
+				color:white;
+			}
+		}
+		li:last-child{
+			margin-right: 0;
+		}
+	}
+}
