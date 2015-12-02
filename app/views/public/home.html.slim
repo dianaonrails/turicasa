@@ -1,6 +1,25 @@
 
 .row.search-home
-	.col-md-12
+	.container.search
+		=form_tag entries_path, :method => 'get' do
+			.col-md-10.no-padding
+				.col-md-5.no-padding
+					=image_tag('pin56.png')
+					=text_field_tag :location, params[:location],size:'28%'
+				.col-md-2.no-padding
+					=image_tag('calendar-icons.png',width:'20%')
+					'&nbsp;
+					=text_field_tag :check_in, params[:check_in],size: '10%'
+				.col-md-3
+					=image_tag('calendar-icons.png',width:'15%')
+					'&nbsp;
+					=text_field_tag :check_out, params[:check_out],size: '10%'
+				.col-md-2
+					=image_tag('multiple25.png',width:'20%')
+					'&nbsp;
+					=text_field_tag :guests, params[:guests],size:'5%'
+			.col-md-2	
+				=submit_tag "Submit", class:'btt-black'
 .container
 	.row.properties-home
 		.col-md-6.oportunities

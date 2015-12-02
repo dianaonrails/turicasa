@@ -10,7 +10,20 @@ $grey:#727272;
 	font-style: normal;
 }
 
+.no-padding{
+	padding: 0;
+}
 
+.btt-black{
+	background-color: $black;
+	-webkit-border-radius: 84px;
+	-moz-border-radius: 84px;
+	border-radius: 84px;
+	padding: 3px 10px;
+	border: none;
+	color: white;
+	font-family: 'Charter';
+}
 /*************HEADER*********************/
 
 .flags{
@@ -69,13 +82,7 @@ $grey:#727272;
 			margin: 0;
 		}
 
-		.btt-login{
-			background-color: $black;
-			-webkit-border-radius: 84px;
-			-moz-border-radius: 84px;
-			border-radius: 84px;
-			padding: 3px 10px;
-		}
+		
 	}
 }
 
@@ -126,6 +133,11 @@ hr{
 		color:white;
 		font-family: 'Charter';
 	}
+}
+
+.search{
+	margin-top: 0%;
+	padding: 2%;
 }
 
 /***************FOOTER****************************/
