@@ -1,4 +1,21 @@
-
+.row
+	div id="myCarousel" class="carousel slide" data-ride="carousel"
+			ol class="carousel-indicators"
+				li data-target="#myCarousel" data-slide-to="0" class="active"
+				li data-target="#myCarousel" data-slide-to="1"
+			div class="carousel-inner" role="listbox"
+				div class="item active"
+					=image_tag("algarve-home.jpg", size:'100%')
+					.container
+						.carousel-caption
+							h1 Algarve.
+							p example text
+				div class="item"
+					=image_tag("azores-house.JPG", size:'100%')	
+					.container
+						.carousel-caption
+							h1 Azores.
+							p example text
 .row.search-home
 	.container.search
 		=form_tag entries_path, :method => 'get' do

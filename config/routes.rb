@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'public#home'
-
+  get 'contacts' => 'public#contacts'
   resources :entries
 
   # Example of regular route:
