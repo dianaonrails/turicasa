@@ -18,23 +18,24 @@
 							p example text
 .row.search-home
 	.container.search
-		=form_tag entries_path, :method => 'get' do
+		=form_tag entries_path, :method => 'get', class:"form-group" do
 			.col-md-10.no-padding
-				.col-md-5.no-padding
+				.icon
 					=image_tag('pin56.png')
-					=text_field_tag :location, params[:location],size:'28%'
-				.col-md-2.no-padding
-					=image_tag('calendar-icons.png',width:'20%')
-					'&nbsp;
-					=text_field_tag :check_in, params[:check_in],size: '10%'
-				.col-md-3
-					=image_tag('calendar-icons.png',width:'15%')
-					'&nbsp;
-					=text_field_tag :check_out, params[:check_out],size: '10%'
+				.col-md-4
+					=text_field_tag :location, params[:location],size:'28%',placeholder:"Insira o destino", class:"form-control"
+				.icon
+					=image_tag('calendar-icons.png',width:'100%')
 				.col-md-2
-					=image_tag('multiple25.png',width:'20%')
-					'&nbsp;
-					=text_field_tag :guests, params[:guests],size:'5%'
+					=text_field_tag :check_in, params[:check_in],size: '10%',placeholder:"Check-in", class:"form-control"
+				.icon
+					=image_tag('calendar-icons.png',width:'100%')
+				.col-md-2
+					=text_field_tag :check_out, params[:check_out],size: '10%',placeholder:"Ceck-out ",class:"form-control"
+				.icon
+					=image_tag('multiple25.png',width:'100%')
+				.col-md-2
+					=text_field_tag :guests, params[:guests],size:'5%',placeholder:"Nº pessoas", class:"form-control"
 			.col-md-2	
 				=submit_tag "Submit", class:'btt-black'
 .container

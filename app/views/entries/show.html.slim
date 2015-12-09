@@ -1,0 +1,9 @@
+.container.show-entry
+	.row
+		.col-md-12
+			p#notice = notice
+			h1 =@entry.name
+
+			= link_to 'Edit', edit_entry_path(@entry)
+			'|
+			= link_to 'Back', entries_path
