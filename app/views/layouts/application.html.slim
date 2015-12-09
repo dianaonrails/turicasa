@@ -29,14 +29,26 @@ html
 					div.nav-title turicasa
 				div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
 					ul class="nav navbar-nav"
-						li class='active'
-							=link_to 'Home','/'
-						li 
-							=link_to 'Sobre nos',''
+						-if action?('home')
+							li class='link-active'
+								=link_to 'Home','/'
+						-else 
+							li
+								=link_to 'Home','/'		
+						-if action?('about')			
+							li class="link-active"
+								=link_to 'Sobre nos','/about'
+						-else
+							li 
+								=link_to 'Sobre nos','/about'			
 						li 
 							=link_to 'Faq',''
-						li 
-							=link_to 'Contactos','/contacts'
+						-if action?('contacts')
+							li class="link-active"
+								=link_to 'Contactos','/contacts'
+						-else
+							li 
+								=link_to 'Contactos','/contacts'
 						li.btt-black 
 							=link_to 'Login',''	
 						

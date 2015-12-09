@@ -9,10 +9,14 @@ $grey:#727272;
 	font-weight: normal;
 	font-style: normal;
 }
-
+body{
+	font-family: 'Charter';
+}
 .no-padding{
 	padding: 0;
 }
+
+
 
 .btt-black{
 	background-color: $black;
@@ -64,6 +68,7 @@ $grey:#727272;
 		width: 60%;
 		float: right;
 		margin-top: 2.1%;
+
 		li{
 			font-size: 1.3em;
 			color:white;
@@ -76,14 +81,18 @@ $grey:#727272;
 			}
 			a:hover{
 				background-color: transparent;
-				text-decoration: underline;
+				border-bottom: 2px solid $light-grey;
 				color:$light-grey;
 			}
 		}
+
 		li:last-child{
 			margin: 0;
 		}
-
+		li.link-active a{
+			color:$black;
+			border-bottom: 2px solid #000;
+		}
 		
 	}
 }
@@ -142,11 +151,51 @@ hr{
 	padding: 2%;
 }
 
+/***************** GENERAL PUBLIC *********************/
+.public-container{
+	position:relative;
+	margin-top:15%;
+	h1.title{
+		font-size: 2.2em;
+		font-family: 'Charter';
+	}
+}
+
+/****************CONTACTS**************/
+.contacts{
+	.subtitle{
+	font-weight:bold;
+	text-align:center;
+	}
+	.address{
+		font-size:1.5em;
+		color:$grey;
+		text-align:center;
+	}
+	.item{
+		text-align: center; 
+		font-size: 1.3em;
+		
+		.item-title{
+			color:$grey;
+		}
+	}
+}
+
+.google-maps{
+	margin:0 auto;
+	text-align: center;
+}
+
 /***************FOOTER****************************/
 
 .footer-row{
-	margin-top: 3%;
+	margin:0;
+	margin-top:5%;
+	width:100%;
 	background-color: $black;
+	position:relative;
+	bottom:0;
 	ul{
 		padding-top: 3%;
 		padding-bottom: 5%;
