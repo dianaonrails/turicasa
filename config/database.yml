@@ -27,9 +27,9 @@ test:
 
 production:
   adapter: mysql2
+  database: "turicasa"
+  username: "admin5mn8q59"
+  password: "5GcEUZ1n8iM9"
+  host: 127.13.129.130
+  port: 3306
   encoding: utf8
-  reconnect: false
-  database: turicasa_production
-  pool: 5
-  username: root
-  password: 
