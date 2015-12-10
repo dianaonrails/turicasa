@@ -1,0 +1,53 @@
+doctype html
+html
+	head
+  		title Turicasa
+  		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+  		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+  		= csrf_meta_tags 
+	body
+		.row
+			.col-md-4.flags
+				ul
+					li.flag-item
+						=image_tag("portuguese-flag.png")
+					li.flag-item
+						=image_tag('british-flag.png')
+					li.flag-item
+						=image_tag('german-flag.png')
+					li.flag-item
+						=image_tag('french-flag.png')
+		.row.navbar-row
+			
+			div class="container"
+				div class="navbar-header"
+					button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" Menu
+
+					div.nav-title turicasa
+				div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+					ul class="nav navbar-nav"
+						-if action?('home')
+							li class='link-active'
+								=link_to 'Home','/'
+						-else 
+							li
+								=link_to 'Home','/'		
+						-if action?('about')			
+							li class="link-active"
+								=link_to 'Sobre nós','/about'
+						-else
+							li 
+								=link_to 'Sobre nós','/about'			
+						li 
+							=link_to 'Faq',''
+						-if action?('contacts')
+							li class="link-active"
+								=link_to 'Contactos','/contacts'
+						-else
+							li 
+								=link_to 'Contactos','/contacts'
+						li.btt-black 
+							=link_to 'Login',''	
+						
+		= yield
+
