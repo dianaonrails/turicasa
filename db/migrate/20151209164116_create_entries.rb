@@ -1,4 +1,4 @@
-class InitialSchemaDump < ActiveRecord::Migration
+class CreateEntries < ActiveRecord::Migration
   def change
   	create_table "entries", force: :cascade do |t|
 	    t.string  "ref",                         limit: 8
