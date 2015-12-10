@@ -32,7 +32,7 @@ else
   fi
 fi
 
-if [ echo "use $OPENSHIFT_APP_NAME; show tables" | mysql | grep spree_activators ]
+if [ echo "use $OPENSHIFT_APP_NAME; show tables" | mysql ]
 then
     bundle exec rake db:schema:load RAILS_ENV="production"
 else
