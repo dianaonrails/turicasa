@@ -34,6 +34,6 @@ fi
 
 #bundle exec rake db:schema:load RAILS_ENV="production"
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-echo "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
-ruby_with_nodejs_context "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
+echo "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-development}"
+ruby_with_nodejs_context "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-development}"
 popd > /dev/null
