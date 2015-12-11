@@ -10,7 +10,7 @@ connection = ActiveRecord::Base.connection
     connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
   end
 
-  sql = File.read('db/import.sql')
+  sql = File.read('db/entries.sql')
   statements = sql.split(/;$/)
   statements.pop
 
