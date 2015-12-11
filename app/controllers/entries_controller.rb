@@ -4,7 +4,13 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    if params[:location] && params[:checkin] && params[:checkout] && params[:guests]
+
+      city = City.find(params[:location])
+      @entries = Entry.where(city: city.id)
+    else  
+      @entries = Entry.all
+    end  
   end
 
   # GET /entries/1
