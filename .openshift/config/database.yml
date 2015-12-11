@@ -10,6 +10,7 @@ mysql: &mysql
   host: 127.13.129.130
   port: 3306
   encoding: utf8
+  socket: /var/lib/openshift/MY-OPENSHIFT-SSH-CODE/mysql-5.1/socket/mysql.sock
 
 postgresql: &postgresql
   adapter: postgresql
