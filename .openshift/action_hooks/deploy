@@ -32,7 +32,7 @@ else
   fi
 fi
 
-#bundle exec rake db:schema:load
+bundle exec rake db:seed
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
 echo "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
 #ruby_with_nodejs_context "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
