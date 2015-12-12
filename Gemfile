@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'slim-rails'
+gem 'react-rails', '~> 1.5.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
