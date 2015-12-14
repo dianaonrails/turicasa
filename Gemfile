@@ -31,6 +31,12 @@ gem 'sdoc', '~> 0.4.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'slim-rails'
 gem 'react-rails', '~> 1.5.0'
+
+
+gem 'yaml_db'
+
+gem 'bootstrap-datepicker-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -56,7 +62,7 @@ end
 
 group :production do
 	gem 'rails_12factor'
-	#gem 'pg'
+	gem 'pg'
 end	
 
 

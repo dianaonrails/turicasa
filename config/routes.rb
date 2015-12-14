@@ -7,7 +7,13 @@ Rails.application.routes.draw do
   root 'public#home'
   get 'contacts' => 'public#contacts'
   get 'about' => 'public#about'
-  resources :entries
+
+
+  resources :entries do
+    collection do
+      get 'search'
+    end
+  end  
 
 
   # Example of regular route:

@@ -3,14 +3,40 @@
     .col-md-12
       h1 Results
       hr
-      table
-        thead
-          tr
-            th
-            th
-            th
+    .col-md-12
+      - @entries.each do |entry|
+        .row.entry
+          .col-md-4.image-display
+            =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+          .col-md-4
+            h1
+              =entry.name
+            h3.grey 
+              'Ref.
+              =entry.ref
+            .reviews
+              h4.grey Classificação
 
-        tbody
-          - @entries.each do |entry|
+            h4.grey
+              'Estadia minima (dias) -
+              =entry.minimunrental
+          .col-md-4
+            h1 Noite 
+            .btt-see-more
+              =link_to 'Detalhes',''
+          .col-md-12
+            h3.bold 
+              =entry.nobedroms 
+              '
+              ' Quartos
+              '&nbsp;
+              =entry.sleeps 
+              '
+              ' pessoas  
+            h4.grey 
+              'Comodidades:
+
+            hr    
+=render 'layouts/footer'
 
       

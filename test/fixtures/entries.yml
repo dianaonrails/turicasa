@@ -2,7 +2,7 @@
 #
 # Table name: entries
 #
-#  id                          :integer          not null
+#  id                          :integer          not null, primary key
 #  ref                         :string(8)
 #  ranking                     :integer          default(0)
 #  name                        :string(30)
@@ -10,7 +10,7 @@
 #  country                     :integer
 #  region                      :integer
 #  city                        :integer
-#  type                        :integer
+#  entry_type                  :integer
 #  catering                    :integer
 #  sleeps                      :integer
 #  includingchildren           :integer

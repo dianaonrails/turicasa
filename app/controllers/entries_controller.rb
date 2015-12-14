@@ -1,16 +1,18 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
 
+  def search
+
+  end 
+
   # GET /entries
   # GET /entries.json
   def index
-    if params[:location] && params[:checkin] && params[:checkout] && params[:guests]
 
-      city = City.find(params[:location])
-      @entries = Entry.where(city: city.id)
-    else  
-      @entries = Entry.all
-    end  
+    
+    @entries = Entry.where(nil)
+    @entries = @entries.region(params[:region_id]) if params[:region_id].present?
+
   end
 
   # GET /entries/1

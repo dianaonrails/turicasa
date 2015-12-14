@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+<<<<<<< HEAD
 connection = ActiveRecord::Base.connection
   connection.tables.each do |table|
     connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
@@ -20,3 +21,6 @@ connection = ActiveRecord::Base.connection
     end
   end
 end  
+=======
+
+>>>>>>> master
