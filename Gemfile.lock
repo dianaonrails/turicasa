@@ -87,9 +87,7 @@ GEM
     mysql2 (0.3.19)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
-
     pg (0.18.4)
-
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -189,6 +187,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.3.11)
+  pg
   rails (= 4.2.0)
   rails_12factor
   react-rails (~> 1.5.0)
