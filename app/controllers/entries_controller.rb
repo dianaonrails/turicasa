@@ -1,10 +1,17 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
 
+  def search
+
+  end 
+
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    
+    @entries = Entry.where(nil)
+    @entries = @entries.region(params[:region_id]) if params[:region_id].present?
+
   end
 
   # GET /entries/1

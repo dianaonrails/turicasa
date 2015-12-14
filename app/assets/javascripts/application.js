@@ -14,8 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require_tree .
 
 $(document).ready(function () {
 	$('#myCarousel').carousel();
+
+
+    $('.datepicker').datepicker();
+ 
 });

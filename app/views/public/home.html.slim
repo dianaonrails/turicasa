@@ -23,45 +23,63 @@
 				.icon
 					=image_tag('pin56.png')
 				.col-md-4
-					=text_field_tag :location, params[:location],size:'28%',placeholder:"Insira o destino", class:"form-control"
+					=select_tag "region_id", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: "Escolha a região",class:"form-control"
 				.icon
 					=image_tag('calendar-icons.png',width:'100%')
 				.col-md-2
-					=text_field_tag :check_in, params[:check_in],size: '10%',placeholder:"Check-in", class:"form-control"
+					=text_field_tag :check_in, params[:check_in],size: '10%',placeholder:"Check-in", class:"form-control datepicker"
 				.icon
 					=image_tag('calendar-icons.png',width:'100%')
 				.col-md-2
-					=text_field_tag :check_out, params[:check_out],size: '10%',placeholder:"Ceck-out ",class:"form-control"
+					=text_field_tag :check_out, params[:check_out],size: '10%',placeholder:"Ceck-out ",class:"form-control datepicker"
 				.icon
 					=image_tag('multiple25.png',width:'100%')
 				.col-md-2
-					=text_field_tag :guests, params[:guests],size:'5%',placeholder:"Nº pessoas", class:"form-control"
+					=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
 			.col-md-2	
 				=submit_tag "Submit", class:'btt-black'
 .container
 	.row.properties-home
-		.col-md-6.oportunities
+		.col-md-6.oportunities.border
 			h1.txt-center Oportunidades
 			hr
-			
-			.col-md-12.property-item
-				.col-md-12
-					h1.txt-property Moradia T3 em Albufeira
-					=image_tag('')
-					h4.description Estadia de 7 noites,paga apenas 5
-					h5.dates Datas: 01 de Setembro a 25 de Dezembro 2015
-				.col-md-4.col-md-offset-3.btt-see-more
-					=link_to 'Ver mais',''
+			.col-md-12.no-padding
+				
+				- @entries_discounts.each do |entry|
+					.property-item
+						-@entry = Entry.find(entry.entrie)
+						.col-md-12
+							h1.txt-property  
+								=@entry.name
+							.col-md-12.no-padding.image-display	
+								=image_tag("http://www.cdpreisen.de/admin/upload/" +@entry.fotoprincipal)
+							h4.description
+								'Desconto de 
+								=entry.discount
+								'%
+							h5.dates 
+								'Datas: 
+
+								=entry.date1.strftime('%d %B %Y') if !entry.date1.blank?
+								' a
+								=entry.date2.strftime('%d %B %Y') if !entry.date1.blank?
+						.col-md-4.col-md-offset-3.btt-see-more
+							=link_to 'Ver mais',''
 							 
 		.col-md-6.news
 			h1.txt-center Novidades
 			hr
 			.col-md-12.property-item
-				.col-md-12
-					h1.txt-property Apartamento T0 em Lagos
-					=image_tag('')
-					h4.description Estadia de 3 noites,paga apenas 2
-					h5.dates Datas: 09 de Março a 12 de Abril 2016
-				.col-md-4.col-md-offset-3.btt-see-more
-					=link_to 'Ver mais',''	
+				- @recent_entries.each do |entry|
+					.col-md-12
+						h1.txt-property 
+							=entry.name
+						.col-md-12.no-padding.image-display	
+							=image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+						h4.description 
+						h5.dates 
+							'Datas:
+							
+					.col-md-4.col-md-offset-3.btt-see-more
+						=link_to 'Ver mais',''	
 =render 'layouts/footer'			
