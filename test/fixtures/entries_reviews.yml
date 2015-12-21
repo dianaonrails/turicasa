@@ -1,16 +1,10 @@
 # == Schema Information
 #
-# Table name: entries_discounts
+# Table name: entries_reviews
 #
-#  id         :integer          not null, primary key
-#  entrie     :integer
-#  days       :integer
-#  entry_type :integer
-#  discount   :float(24)
-#  unit       :integer
-#  when       :integer
-#  date1      :date
-#  date2      :date
+#  id     :integer          not null, primary key
+#  entrie :integer
+#  review :text(65535)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -183,5 +183,23 @@
 
 class Entry < ActiveRecord::Base
 	has_many :entries_discounts
+	has_many :entries_reviews
+	has_many :photos
 	scope :region, -> (region) { where region: region }
+
+	def entries_reviews(entry)
+		begin
+        	@reviews = EntriesReview.where(entrie: entry.id)
+      	rescue RecordNotFound => e
+        	@reviews = 0
+      	end
+	end		
+
+	def photos(entry)
+		begin
+        	@photos = Photo.where(entrie: entry.id)
+      	rescue RecordNotFound => e
+        	@photos = 0
+      	end
+	end	
 end

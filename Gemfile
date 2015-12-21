@@ -32,6 +32,9 @@ gem 'react-rails', '~> 1.5.0'
 gem 'yaml_db'
 
 gem 'bootstrap-datepicker-rails'
+
+gem 'Bootstrap-Image-Gallery-rails'
+gem 'bootstrap-addons-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

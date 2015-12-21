@@ -1,9 +1,293 @@
-.container.show-entry
+.container.show-entry.public-container
 	.row
 		.col-md-12
 			p#notice = notice
-			h1 =@entry.name
+		.col-md-12
+			hr
+			.col-md-4	
+				h1 =@entry.name
+				h2.grey
+					'Ref.
+					=@entry.ref
 
-			= link_to 'Edit', edit_entry_path(@entry)
-			'|
-			= link_to 'Back', entries_path
+				h2.grey 
+					'Reviews
+					-@entry.ranking.times do
+						.star
+							=image_tag('star129.png')
+				.space
+				h4.grey 	
+					=@entry.nobedroms
+					' 
+					'Quartos
+				h4.grey
+					=@entry.sleeps
+					' 
+					'Pessoas
+				h4.grey
+					'Minimo
+					' 
+					=@entry.minimunrental
+					' 
+					' de dias
+
+			.col-md-8.show-image-display
+				=image_tag("http://www.cdpreisen.de/admin/upload/" + @entry.fotoprincipal)
+			hr.line-bottom
+		.col-md-12
+			.col-md-8
+				h2.grey Photos	
+				- @photos = @entry.photos(@entry)
+				.col-md-12
+					div id="blueimp-gallery" class="blueimp-gallery"
+						div class="slides"
+						h3 class="title"
+						a class="prev" <	
+						a class="next" >
+						a class="close" ×
+						a class="play-pause"
+						div class="modal fade"
+							div class="modal-dialog"
+								div class="modal-header"
+									button type="button" class="close" aria-hidden="true" &times;
+									h4 class="modal-title"
+								div class="modal-body next"
+								div class="modal-footer"
+									button type="button" class="btn btn-default pull-left prev"
+										i class="glyphicon glyphicon-chevron-left"
+										'Previous
+									button type="button" class="btn btn-primary next"
+										'Next
+										i class="glyphicon glyphicon-chevron-right"
+					div id="links"
+						- @photos.each do |photo|
+							.show-image
+								=link_to "http://www.cdpreisen.de/admin/upload/" + photo.photo, :'data-gallery' => 'that'
+									=image_tag("http://www.cdpreisen.de/admin/upload/" + photo.photo)
+						
+			.col-md-4.book-container
+				h3.txt-center
+					span.txt-center.red 76€ 
+				 	'por noite
+				hr
+				.icon-calendar
+					=image_tag('calendar-icons-red.png',width:'100%')
+				.col-md-5
+					=text_field_tag :check_in,nil,placeholder:'check-in', class:"form-control datepicker"
+				.icon-calendar		
+					=image_tag('calendar-icons-red.png',width:'100%')
+				.col-md-5
+					=text_field_tag :check_out,nil,placeholder:'check-out', class:"form-control datepicker"
+				.break-space
+					.icon-guests
+						=image_tag('multiple25-red.png',width:'100%')
+					.col-md-5
+						=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
+				.col-md-12.btt-book
+					=submit_tag "Book it Now!", class:'btt-black'
+			hr.line-bottom
+		.col-md-12
+			h1.sub-title.black.bold Descrição
+			hr.line-bottom
+		.col-md-12
+			h1.sub-title.black.bold Comodidades
+			.col-md-4
+				-if @entry.pets
+					span.grey Permite animais
+					br
+				-if @entry.iscooker
+					span.grey Fogão
+					br
+				-if @entry.isrefrigerator
+					span.grey Frigorífico
+					br	
+				-if @entry.iscoffemachine
+					span.grey Máquina de café
+					br	
+				-if @entry.isdishwater
+					span.grey Máquina de lavar loiça
+					br	
+				-if @entry.iswashmachine
+					span.grey Máquina de lavar roupa
+					br
+				-if @entry.istowels
+					span.grey Toalhas
+					br
+				
+				-if @entry.isgarage
+					span.grey Garagem
+					br	
+				-if @entry.isprivateparking
+					span.grey Parque de estacionamento privado
+					br		
+			.col-md-4
+				-if @entry.iscentralheating
+					span.grey Aquecimento central
+					br
+				-if @entry.isairconditioning
+					span.grey Ar condicionado
+					br
+				-if @entry.isfireplace
+					span.grey Lareira
+					br
+				-if @entry.istelephone
+					span.grey Telefone
+					br
+				-if @entry.isfax
+					span.grey Fax
+					br
+				-if @entry.isinternetwificonnection
+					span.grey Wi-fi
+					br
+				-if @entry.isalarm
+					span.grey Alarme
+					br
+			.col-md-4
+				-if @entry.istv
+					span.grey TV
+					br
+				-if @entry.iscablesatelitetv
+					span.grey TV cabo
+					br
+				-if	@entry.isradio
+					span.grey Radio
+					br
+				-if @entry.issauna
+					span.grey Sauna
+					br
+				-if @entry.isterrace
+					span.grey Terraço
+					br
+				-if @entry.isprivateswimmingpool
+					span.grey Piscina privada
+					br
+				-if @entry.issharedswimmingpool
+					span.grey Piscina partilhada
+					br
+				-if @entry.isjacuzzi
+					span.grey Jacuzzi
+					br
+			hr.line-bottom
+		.col-md-12
+			h1.sub-title.black.bold Atividades
+			.col-md-4
+				-if @entry.istabletennis
+					span.grey Ping-pong
+					br
+				-if @entry.istenniscourt
+					span.grey Campo de ténis
+					br
+				-if @entry.isgolf
+					span.grey Golf
+					br
+				-if @entry.isfishing
+					span.grey Pesca
+					br
+				-if @entry.isbiking
+					span.grey Bicicleta
+					br
+				-if @entry.ishorsebackriding
+					span.grey Cavalgar
+					br
+				-if @entry.ishunting
+					span.grey Caçar
+					br
+			.col-md-4
+				-if @entry.isjetskiing
+					span.grey Jet-ski
+					br
+				-if @entry.iskayaking
+					span.grey Kayaking
+					br
+				-if @entry.isrockclimbing
+					span.grey Escalada
+					br
+				-if @entry.issnowboarding
+					span.grey Snowboard
+					br
+				-if @entry.isspa
+					span.grey Spa
+					br
+				-if @entry.issurfing
+					span.grey Surf
+					br
+			hr.line-bottom
+		.col-md-12
+			h1.sub-title.black.bold Distâncias
+			.col-md-4
+				span.grey 
+					=@entry.airportname 
+
+				br
+				-if !@entry.airportdistance.blank?
+					span.grey
+						'Aeroporto
+						' 
+						=@entry.airportdistance
+						=@entry.airportunit
+					br
+				-if !@entry.golfdistance.blank?
+					span.grey 
+						'Golf
+						' 
+						=@entry.golfdistance
+						=@entry.golfunit
+					br
+				-if !@entry.beachdistance.blank?
+					span.grey
+						'Praia
+						' 
+						=@entry.beachdistance
+						=@entry.beachunit
+					br
+			.col-md-4		
+				-if !@entry.shoppingdistance.blank?
+					span.grey
+						'Lojas
+						' 
+						=@entry.shoppingdistance
+						=@entry.shoppingunit
+					br	
+				-if !@entry.restaurantdistance.blank?
+					span.grey
+						'Restaurantes
+						' 
+						=@entry.restaurantdistance
+						=@entry.restaurantunit
+					br
+				-if !@entry.waterparkdistance.blank?
+					span.grey
+						'Waterpark
+						' 
+						=@entry.waterparkdistance
+						=@entry.waterparkunit
+			hr.line-bottom
+		.col-md-12
+			.col-md-8
+				h1.sub-title.black.bold Reviews
+				-reviews  = @entry.entries_reviews(@entry)
+				
+				-@entry.ranking.times do
+					.star
+						=image_tag('star129.png')
+				span.grey
+					'de 
+					=reviews.size
+					' 
+					'reviews
+				
+			.col-md-4.btt-see-more.margin
+				=link_to 'Escrever uma review', ''
+
+			-if @entry.entries_reviews(@entry).nil?	
+				h3 No records
+			-else
+				-reviews  = @entry.entries_reviews(@entry)
+				-reviews.each do |review|
+					.col-md-12.review
+						.col-md-2.show-icon
+							=image_tag('icons.png')
+						.col-md-10
+							=raw(review.review)	
+						hr.line-bottom
+=render 'layouts/footer'
