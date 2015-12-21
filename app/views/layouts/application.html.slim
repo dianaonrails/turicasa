@@ -46,8 +46,14 @@ html
 						-else
 							li 
 								=link_to 'Contactos','/contacts'
-						li.btt-black 
-							=link_to 'Login',''	
 						
+						li role="presentation" class="btt-black dropdown"
+								a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+									'Login
+									
+									ul class="dropdown-menu"
+										li Client
+										li Owner	
+							
 		= yield
 

@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
-
+  helper :all
   def search
 
   end 
@@ -18,7 +18,11 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
+    @entry = Entry.find(params[:id])
+
   end
+
+  
 
   # GET /entries/new
   def new
@@ -74,6 +78,8 @@ class EntriesController < ApplicationController
     def set_entry
       @entry = Entry.find(params[:id])
     end
+
+    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params

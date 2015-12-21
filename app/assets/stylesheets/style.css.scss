@@ -35,14 +35,29 @@ body{
 	font-weight:bold;
 }
 
+.sub-title{
+	font-size:2em;
+}
+
+.arrow{
+	float:right;
+}
+
+.login{
+	float:left;
+}
+
+
+
 .btt-black{
 	background-color: $black;
 	-webkit-border-radius: 84px;
 	-moz-border-radius: 84px;
 	border-radius: 84px;
-	padding: 3px 10px;
+	padding: 5px 12px;
 	border: none;
 	color: white;
+	
 	font-family: 'Charter';
 }
 /*************HEADER*********************/
@@ -110,7 +125,22 @@ body{
 			color:$black;
 			border-bottom: 2px solid #000;
 		}
-		
+
+		.open{
+			.dropdown-menu{
+				display: block;
+				li{
+					color:$light-grey;
+					font-size: 1.2em;
+				    text-align: center;
+				    padding: 5px;
+				    margin: 0;
+				}
+				li:hover{
+					color:$grey;
+				}
+			}
+		}
 	}
 }
 
@@ -242,13 +272,109 @@ hr{
 	
 }
 
+/*********** SHOW ENTRY ********************/
+.star{
+	display:inline-block;
+	img{
+		width: 80%;
+	}
+}
+.space{
+	height:100px;
+	width:100%;
+}
+.show-image-display{
+	img{
+		width: 100%;
+		height: 400px;
+	}
+}
+.line-bottom{
+	display:block;
+	width:100%;
+	top: 27px;
+    position: relative;
+}
+.show-entry{
+	.book-container{
+		margin-top:5%;
+		border:1px solid $light-grey;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,ececed+100 */
+		background: #fefefe; /* Old browsers */
+		background: -moz-linear-gradient(-45deg,  #fefefe 0%, #ececed 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(-45deg,  #fefefe 0%,#ececed 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(135deg,  #fefefe 0%,#ececed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#ececed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+		padding:3%;
+		.icon-calendar{
+			width: 8%;
+			float:left;
+			display: inline-block;
+		}
+		.icon-guests{
+
+			width: 8%;
+			float:left;
+			display: inline-block;
+		}
+		.break-space{
+			margin-top: 5%;
+			display: block;
+			width: 100%;
+			float: left;
+		}
+		.btt-book{
+			margin-top: 5%;
+			background-color: #333333;
+			border-radius:10px;
+			padding: 10px;
+		   
+		    width: 100%;
+		    font-size: 1.5em;
+		    text-align: center;
+		}
+	}
+	span{
+		font-size: 1.2em;
+	}
+	.show-image{
+		width: 30%;
+		display: inline-block;
+		float: left;
+		padding:10px;
+		img{
+			width: 100%;
+		}
+	}
+	.review{
+		margin-top: 3%;
+		.show-icon{
+			img{
+				width: 60%;
+			}
+		}
+	}
+	.red{
+		color:$red;
+	}
+	.txt-center{
+		text-align: center;
+	}
+	.margin{
+		margin-top: 5%;
+	}
+}
+.comodaty{
+	margin-right:3%;
+}
+
 
 /***************FOOTER****************************/
 .popular-destinations{
 	margin-top:5%;
 	.name{
 		position:absolute;
-		bottom:8%;
+		bottom:7%;
 		background-color:$dark-red;
 		width: 50%;
     	padding: 1%;
