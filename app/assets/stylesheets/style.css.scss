@@ -129,15 +129,16 @@ body{
 		.open{
 			.dropdown-menu{
 				display: block;
-				li{
+				li a{
 					color:$light-grey;
 					font-size: 1.2em;
 				    text-align: center;
 				    padding: 5px;
 				    margin: 0;
 				}
-				li:hover{
+				li a:hover{
 					color:$grey;
+					text-decoration: none;
 				}
 			}
 		}
@@ -367,8 +368,68 @@ hr{
 .comodaty{
 	margin-right:3%;
 }
+/************ OWNERS ******************/
 
+.form-container{
+	border: 1px solid $light-grey;
+    border-radius: 10px;
+    background-color:#f2f2f2;
+    padding:20px;
+}
 
+.form-field{
+	padding: 15px;
+    margin-bottom: 2%;
+}
+
+.lbl-field{
+	display:inline-block;
+	color:$grey;
+	float:left;
+	text-align:right;
+	width: 26%;
+}
+.txt-field{
+	width: 70%;
+    display: inline-block;
+    float: right;
+    text-align: left;
+    input{
+    	display: inline-block;
+    	width: 90%;
+    	color:$black;
+    }
+}
+
+.btt-enter{
+	width:30%;
+	display:inline-block;
+	text-align: center;
+    font-size: 1.5em;
+    input{
+    	padding:15px;
+    	border-radius:20px;
+    	width: 85%;	
+    }
+}
+.btt-regist{
+	display:inline-block;
+	font-size:1em;
+}
+
+.actions{
+	width: 100%;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.4em;
+    margin-top: 3%;
+    padding:2%;
+	input{
+		background: none;
+    	border: none;
+		width: 100%;
+	}
+}
 /***************FOOTER****************************/
 .popular-destinations{
 	margin-top:5%;

@@ -52,8 +52,10 @@ html
 									'Login
 									
 									ul class="dropdown-menu"
-										li Client
-										li Owner	
+										li 
+											=link_to 'Client',''
+										li 
+											=link_to 'Owner',login_owners_path
 							
 		= yield
 

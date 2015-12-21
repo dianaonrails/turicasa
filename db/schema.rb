@@ -589,11 +589,12 @@ ActiveRecord::Schema.define(version: 20151213194256) do
 
   add_index "entries_discounts", ["entrie"], name: "entrie", using: :btree
 
-  create_table "entries_reviews", id: false, force: :cascade do |t|
-    t.integer "id",     limit: 4,     null: false
+  create_table "entries_reviews", force: :cascade do |t|
     t.integer "entrie", limit: 4
     t.text    "review", limit: 65535
   end
+
+  add_index "entries_reviews", ["entrie"], name: "entrie", using: :btree
 
   create_table "languages_bookings", id: false, force: :cascade do |t|
     t.integer "id",                        limit: 4,     null: false
