@@ -3,6 +3,12 @@
     .col-md-12
       h1 Results
       hr
+    -if current_user
+      .col-md-12
+        = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
+          =tab.owner 'Dados Pessoais', owner_path(current_user.id)
+          =tab.entries 'Propriedades', entries_path
+  
     .col-md-12
       - @entries.each do |entry|
         .row.entry

@@ -1,6 +1,6 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:login,:show, :edit, :update, :destroy]
-
+  set_tab :owner
   def login
   end   
 
@@ -74,7 +74,7 @@ class OwnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def owner_params
-      params[:owner].permit(:email,:password,:firstname,:lastname,:birtday,:street,:street2,:country,:zipandcity,
+      params[:owner].permit(:id,:email,:password,:password_confirmation,:firstname,:lastname,:birtday,:street,:street2,:country,:zipandcity,
         :telhome,:telhome2,:mobile,:mobile2,:photo,:preferedlanguage)
     end
 end

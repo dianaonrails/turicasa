@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  #get 'owner_sessions/new'
+
+  #get 'owner_sessions/create'
+
+  #get 'owner_sessions/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -17,12 +23,11 @@ Rails.application.routes.draw do
   end
 
 
+  resources :owner_sessions
+  resources :owners
 
-  resources :owners do
-    collection do
-      get 'login'
-    end
-  end      
+  get 'login' => 'owner_sessions#new', :as => :login
+  post 'logout' => 'owner_sessions#destroy', :as => :logout
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

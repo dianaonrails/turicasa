@@ -1,6 +1,8 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
   helper :all
+
+  set_tab :entries
   def search
 
   end 

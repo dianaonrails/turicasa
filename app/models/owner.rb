@@ -3,7 +3,7 @@
 # Table name: owners
 #
 #  id               :integer          not null, primary key
-#  type             :integer          default(1)
+#  type_of          :integer          default(1)
 #  typeowner        :integer          default(2)
 #  typeagent        :integer          default(0)
 #  firstname        :string(30)
@@ -37,7 +37,12 @@
 #  percentageowner  :integer          default(10)
 #  percentageagent  :integer          default(0)
 #  level            :integer
+#  crypted_password :string(255)
+#  salt             :string(255)
 #
 
 class Owner < ActiveRecord::Base
+  authenticates_with_sorcery!
+
+  validates :email, uniqueness: true
 end

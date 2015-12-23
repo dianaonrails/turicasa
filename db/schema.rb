@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213194256) do
+ActiveRecord::Schema.define(version: 20151222165824) do
 
   create_table "access", force: :cascade do |t|
     t.integer "property", limit: 4
@@ -576,25 +576,23 @@ ActiveRecord::Schema.define(version: 20151213194256) do
     t.integer "percentage", limit: 4
   end
 
-  create_table "entries_discounts", force: :cascade do |t|
-    t.integer "entrie",     limit: 4
-    t.integer "days",       limit: 4
-    t.integer "entry_type", limit: 4
-    t.float   "discount",   limit: 24
-    t.integer "unit",       limit: 4
-    t.integer "when",       limit: 4
+  create_table "entries_discounts", id: false, force: :cascade do |t|
+    t.integer "id",       limit: 4,  null: false
+    t.integer "entrie",   limit: 4
+    t.integer "days",     limit: 4
+    t.integer "type",     limit: 4
+    t.float   "discount", limit: 24
+    t.integer "unit",     limit: 4
+    t.integer "when",     limit: 4
     t.date    "date1"
     t.date    "date2"
   end
 
-  add_index "entries_discounts", ["entrie"], name: "entrie", using: :btree
-
-  create_table "entries_reviews", force: :cascade do |t|
+  create_table "entries_reviews", id: false, force: :cascade do |t|
+    t.integer "id",     limit: 4,     null: false
     t.integer "entrie", limit: 4
     t.text    "review", limit: 65535
   end
-
-  add_index "entries_reviews", ["entrie"], name: "entrie", using: :btree
 
   create_table "languages_bookings", id: false, force: :cascade do |t|
     t.integer "id",                        limit: 4,     null: false
@@ -850,6 +848,8 @@ ActiveRecord::Schema.define(version: 20151213194256) do
     t.integer "percentageowner",  limit: 4,        default: 10
     t.integer "percentageagent",  limit: 4,        default: 0
     t.integer "level",            limit: 4
+    t.string  "crypted_password", limit: 255
+    t.string  "salt",             limit: 255
   end
 
   create_table "paginas", id: false, force: :cascade do |t|

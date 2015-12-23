@@ -1,19 +1,12 @@
-h1 Listing owners
-
-table
-  thead
-    tr
-      th
-      th
-      th
-
-  tbody
-    - @owners.each do |owner|
-      tr
-        td = link_to 'Show', owner
-        td = link_to 'Edit', edit_owner_path(owner)
-        td = link_to 'Destroy', owner, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Owner', new_owner_path
+.container.public-container
+  .row
+    .col-md-12
+      h1
+        'Bem-vindo
+        = current_user.firstname
+        ' 
+        = current_user.lastname
+    .col-md-12
+      = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
+        =tab.owner 'Dados Pessoais', owner_path(current_user.id)
+        =tab.entries 'Propriedades', entries_path

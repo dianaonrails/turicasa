@@ -47,6 +47,16 @@ body{
 	float:left;
 }
 
+.show-field{
+	font-size:1.3em;
+	padding:10px;
+}
+
+.border-style{
+	border-bottom:1px solid $light-grey;
+	border-right:1px solid $light-grey;
+	border-left:1px solid $light-grey;
+}
 
 
 .btt-black{
@@ -97,7 +107,7 @@ body{
 	}
 
 	.nav.navbar-nav{
-		width: 60%;
+		width: 64%;
 		float: right;
 		margin-top: 2.1%;
 
@@ -125,6 +135,19 @@ body{
 			color:$black;
 			border-bottom: 2px solid #000;
 		}
+		.link-personal-area{
+			margin-right:1%;
+			font-size: 0.8em;
+			
+		}
+
+		.logout{
+			
+			font-size: 0.8em;
+			a{
+				line-height: 1;
+			}
+		}
 
 		.open{
 			.dropdown-menu{
@@ -139,10 +162,34 @@ body{
 				li a:hover{
 					color:$grey;
 					text-decoration: none;
+					border:none;
 				}
 			}
 		}
 	}
+}
+
+.nav-tabs{
+	border-bottom:1px solid $light-grey;
+}
+
+.nav-tabs > li.current{
+	background-color:$light-grey;
+	position: relative;
+	display: block;
+	padding: 10px;
+	border-right:1px solid $light-grey;
+	border-top: 1px solid $light-grey;
+	border-left: 1px solid $light-grey;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	border-bottom:2px solid $dark-red;
+	span{
+		position:relative;
+		display: block;
+		
+	}
+	
 }
 
 /******************HOMEPAGE************************/
