@@ -10,7 +10,7 @@
 #  country                     :integer
 #  region                      :integer
 #  city                        :integer
-#  entry_type                  :integer
+#  type_of                     :integer
 #  catering                    :integer
 #  sleeps                      :integer
 #  includingchildren           :integer

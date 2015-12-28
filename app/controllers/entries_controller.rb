@@ -1,6 +1,8 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
   helper :all
+  before_filter :save_login_state, :only => [:new, :create]
+  set_tab :entries
   def search
 
   end 
@@ -9,10 +11,14 @@ class EntriesController < ApplicationController
   # GET /entries.json
   def index
 
-    
-    @entries = Entry.where(nil)
-    @entries = @entries.region(params[:region_id]) if params[:region_id].present?
+    if current_user
+      @entries = Entry.where(owner: current_user.id)
+    else  
+      @entries = Entry.where(nil)
+      @entries = @entries.region(params[:region_id]) if params[:region_id].present?
+    end  
 
+    
   end
 
   # GET /entries/1

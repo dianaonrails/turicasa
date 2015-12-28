@@ -1,0 +1,108 @@
+= form_for @owner do |f|
+  - if @owner.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@owner.errors.count, "error")} prohibited this owner from being saved:"
+      ul
+        - @owner.errors.full_messages.each do |message|
+          li = message
+  .form-field
+    .lbl-field
+    	=label_tag 'Email:'
+    .txt-field
+    	=f.text_field :email, type:"email",class:"form-control", required: true
+    	'&nbsp;
+    	span * 
+  .form-field
+    .lbl-field
+    	=label_tag 'Password:'
+    .txt-field
+    	=f.text_field :password,type:"password", class:"form-control" , required: true
+   	 	'&nbsp;
+   	 	span * 
+            
+  .form-field
+    .lbl-field
+    	=label_tag 'Primeiro nome:'
+    .txt-field
+    	=f.text_field :firstname, class:"form-control", required: true
+    	'&nbsp;
+    	span *
+  .form-field
+    .lbl-field
+    	=label_tag 'Último nome:'
+    .txt-field
+    	=f.text_field :lastname, class:"form-control", required: true
+    	'&nbsp;
+    	span * 
+  .form-field
+    .lbl-field
+    	=label_tag 'Registado desde:'
+    .txt-field
+    	=f.text_field :birtday, class:"form-control datepicker", required: true
+    	'&nbsp;
+    	span *  	
+  .form-field
+    .lbl-field
+    	=label_tag 'Morada:'
+    .txt-field
+    	=f.text_field :street, class:"form-control" , required: true
+    	'&nbsp;
+    	span *
+  .form-field
+    .lbl-field
+    	=label_tag 'Morada 2:'
+    .txt-field
+    	=f.text_field :street2, class:"form-control"
+  .form-field
+    .lbl-field
+    	=label_tag 'País:'
+    .txt-field
+    	=f.text_field :country, class:"form-control", required: true
+    	'&nbsp;
+    	span *
+  .form-field
+    .lbl-field
+    	=label_tag 'Código postal e cidade:'
+    .txt-field
+    	=f.text_field :zipandcity, class:"form-control" , required: true
+    	'&nbsp;
+    	span *
+  .form-field
+    .lbl-field
+    	=label_tag 'Telefone de casa:'
+    .txt-field
+    	=f.text_field :telhome, class:"form-control", required: true
+    	'&nbsp;
+    	span *
+  .form-field
+    .lbl-field
+    	=label_tag 'Telefone de casa 2:'
+    .txt-field
+    	=f.text_field :telhome2, class:"form-control"
+  .form-field
+    .lbl-field
+    	=label_tag 'Telemóvel:'
+    .txt-field
+    	=f.text_field :mobile, class:"form-control", required: true
+    	'&nbsp;
+    	span *
+  .form-field
+    .lbl-field
+    	=label_tag 'Telemóvel 2:'
+    .txt-field
+    	=f.text_field :mobile2, class:"form-control"   	  	   	  	 
+  
+  .form-field
+    .lbl-field
+    	=label_tag 'Foto:'
+    .txt-field
+    	=f.file_field :photo
+  .form-field
+    .lbl-field
+    	=label_tag 'Linguagem preferencial:'
+    .txt-field
+    	=f.collection_select(:preferedlanguage, Language.all, :id,:name) 	
+
+  .actions.btt-black
+  	= f.submit 'Registar'
+

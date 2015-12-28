@@ -1,0 +1,12 @@
+.container.public-container
+  .row
+    .col-md-12
+      h1
+        'Bem-vindo
+        = current_user.firstname
+        ' 
+        = current_user.lastname
+    .col-md-12
+      = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
+        =tab.owner 'Dados Pessoais', owner_path(current_user.id)
+        =tab.entries 'Propriedades', entries_path

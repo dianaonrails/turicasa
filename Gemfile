@@ -41,6 +41,12 @@ gem 'bootstrap-datepicker-rails'
 gem 'Bootstrap-Image-Gallery-rails'
 gem 'bootstrap-addons-rails'
 
+#Authentication
+gem 'sorcery'
+
+gem 'bcrypt'
+gem "tabs_on_rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

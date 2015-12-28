@@ -1,42 +1,75 @@
 .container.public-container
   .row
-    .col-md-12
-      h1 Results
-      hr
-    .col-md-12
-      - @entries.each do |entry|
-        .row.entry
-          .col-md-4.image-display
-            =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
-          .col-md-4
-            h1
-              =entry.name
-            h3.grey 
-              'Ref.
-              =entry.ref
-            .reviews
-              h4.grey Classificação
 
-            h4.grey
-              'Estadia minima (dias) -
-              =entry.minimunrental
-          .col-md-4
-            h1 Noite 
-            .btt-see-more
-              =link_to 'Detalhes',entry_path(entry.id)
+    -if current_user
+      .col-md-12
+        = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
+          =tab.owner 'Dados Pessoais', owner_path(current_user.id)
+          =tab.entries 'Propriedades', entries_path
+        .col-md-12.border-style
+          =link_to 'Adicionar',new_entry_path
           .col-md-12
-            h3.bold 
-              =entry.nobedroms 
-              '
-              ' Quartos
-              '&nbsp;
-              =entry.sleeps 
-              '
-              ' pessoas  
-            h4.grey 
-              'Comodidades:
+            table class="table table-striped"
+              tr
+                th Nome
+                th Ref
+                th País
+                th Cidade
+                th Ranking
+                th
+              - @entries.each do |entry|
+                
+                tr
+                  
+                  td =entry.name
+                
+                  td =entry.ref
+                  td =Country.find(entry.country).country
+                  td =City.find(entry.city).city
+                  td =entry.ranking
+                  td 
+                    =link_to 'Ver mais',entry_path(entry.id) 
+                    '/ 
+                    =link_to 'Editar',edit_entry_path(entry.id)
 
-            hr    
+    -else  
+      .col-md-12
+        h1 Results
+        hr
+      .col-md-12
+        - @entries.each do |entry|
+          .row.entry
+            .col-md-4.image-display
+              =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+            .col-md-4
+              h1
+                =entry.name
+              h3.grey 
+                'Ref.
+                =entry.ref
+              .reviews
+                h4.grey Classificação
+
+              h4.grey
+                'Estadia minima (dias) -
+                =entry.minimunrental
+            .col-md-4
+              h1 Noite 
+              .btt-see-more
+                =link_to 'Detalhes',entry_path(entry.id)
+            .col-md-12
+              h3.bold 
+                =entry.nobedroms 
+                '
+                ' Quartos
+                '&nbsp;
+                =entry.sleeps 
+                '
+                ' pessoas  
+              h4.grey 
+                'Comodidades:
+
+              hr    
 =render 'layouts/footer'
 
       
