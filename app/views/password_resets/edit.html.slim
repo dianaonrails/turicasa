@@ -1,0 +1,21 @@
+.container.public-container
+	.row
+		.col-md-12
+			h1 Escolha uma nova password
+		.col-md-12
+			=form_for @owner, :url => password_reset_path(@token), :html => {:method => :put} do |f|
+				-if @owner.errors.any?
+					div id="error_explanation"
+						= pluralize(@user.errors.count, "error") 
+						h2 prohibited this user from being saved:
+				.field
+					= f.label :email
+					= @owner.email
+				.field
+					= f.label :password
+					= f.password_field :password
+				.field
+					= f.label :password_confirmation
+					= f.password_field :password_confirmation
+				.actions
+					= f.submit				

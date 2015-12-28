@@ -2,15 +2,15 @@
 #
 # Table name: entries_discounts
 #
-#  id         :integer          not null, primary key
-#  entrie     :integer
-#  days       :integer
-#  entry_type :integer
-#  discount   :float(24)
-#  unit       :integer
-#  when       :integer
-#  date1      :date
-#  date2      :date
+#  id       :integer          not null
+#  entrie   :integer
+#  days     :integer
+#  type     :integer
+#  discount :float(24)
+#  unit     :integer
+#  when     :integer
+#  date1    :date
+#  date2    :date
 #
 
 class EntriesDiscount < ActiveRecord::Base

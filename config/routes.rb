@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  get 'password_resets/create'
+
+  get 'password_resets/edit'
+
+  get 'password_resets/update'
+
   #get 'owner_sessions/new'
 
   #get 'owner_sessions/create'
@@ -25,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :owner_sessions
   resources :owners
+  resources :password_resets
 
   get 'login' => 'owner_sessions#new', :as => :login
   post 'logout' => 'owner_sessions#destroy', :as => :logout

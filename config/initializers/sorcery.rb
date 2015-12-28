@@ -2,7 +2,15 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = []
+Rails.application.config.sorcery.submodules = [:reset_password]
+
+Rails.application.config.sorcery.configure do |config|
+  config.owner_config do |owner|
+    owner.reset_password_mailer = OwnerMailer
+  end
+end
+
+
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -12,7 +20,7 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `:not_authenticated`
   #
   # config.not_authenticated_action =
-
+  #config.reset_password_mailer = OwnerMailer
 
   # When a non logged in user tries to enter a page that requires login, save
   # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
@@ -333,7 +341,7 @@ Rails.application.config.sorcery.configure do |config|
     # mailer class. Needed.
     # Default: `nil`
     #
-    # user.reset_password_mailer =
+    user.reset_password_mailer = OwnerMailer
 
 
     # reset password email method on your mailer class.

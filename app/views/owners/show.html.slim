@@ -1,10 +1,10 @@
 .container.public-container
 	.row
 		.col-md-12
-
-			= tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
-          		=tab.owner 'Dados Pessoais', owner_path(current_user.id)
-         		=tab.entries 'Propriedades', entries_path
+			-if current_user
+				= tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
+	          		=tab.owner 'Dados Pessoais', owner_path(current_user.id)
+	         		=tab.entries 'Propriedades', entries_path
 			.col-md-12.border-style
 				p#notice = notice
 				h2

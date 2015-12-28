@@ -1,16 +1,12 @@
 # == Schema Information
 #
-# Table name: entries_discounts
+# Table name: countries
 #
-#  id       :integer          not null
-#  entrie   :integer
-#  days     :integer
-#  type     :integer
-#  discount :float(24)
-#  unit     :integer
-#  when     :integer
-#  date1    :date
-#  date2    :date
+#  id           :integer          not null, primary key
+#  optionnumber :integer
+#  language     :integer
+#  con          :integer
+#  country      :string(40)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

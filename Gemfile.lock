@@ -223,6 +223,7 @@ PLATFORMS
 
 DEPENDENCIES
   Bootstrap-Image-Gallery-rails
+  bcrypt
   bootstrap-addons-rails
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.5)
