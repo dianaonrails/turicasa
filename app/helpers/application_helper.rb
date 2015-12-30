@@ -7,9 +7,7 @@ module ApplicationHelper
 	    action.include?(params[:action])
 	end
 
-	def current_owner(owner)
-		@current_owner = owner
-	end	
+	
 
 	
 

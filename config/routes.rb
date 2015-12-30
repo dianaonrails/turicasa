@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :bookings
 
   get 'password_resets/create'
 
@@ -34,8 +35,16 @@ Rails.application.routes.draw do
   resources :owners
   resources :password_resets
 
-  get 'login' => 'owner_sessions#new', :as => :login
-  post 'logout' => 'owner_sessions#destroy', :as => :logout
+  resources :client_sessions
+  resources :clients
+
+  get 'owner_login' => 'owner_sessions#new', :as => :owner_login
+  post 'owner_logout' => 'owner_sessions#destroy', :as => :owner_logout
+
+  get 'client_login' => 'client_sessions#new', :as => :client_login
+  post 'client_logout' => 'client_sessions#destroy', :as => :client_logout
+
+  resources :bookings
 
 
   # Example of regular route:

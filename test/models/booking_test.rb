@@ -1,0 +1,58 @@
+# == Schema Information
+#
+# Table name: bookings
+#
+#  id                    :integer          not null, primary key
+#  number                :integer
+#  date                  :date
+#  client                :integer
+#  owner                 :integer
+#  agent                 :integer          default(0)
+#  entrie                :integer
+#  numberofpeople        :integer
+#  arrival               :date
+#  departure             :date
+#  numberdays            :integer
+#  remarks               :text(65535)
+#  totalvalue            :float(24)
+#  depositvalue          :float(24)
+#  balancevalue          :float(24)
+#  datelimitdeposit      :date
+#  datelimitbalance      :date
+#  depositpayeddate      :date
+#  balancepayeddate      :date
+#  depositpayed          :integer          default(0)
+#  balancepayed          :integer          default(0)
+#  status                :integer          default(1)
+#  commissionowner       :float(24)        default(0.0)
+#  commissionagent       :float(24)        default(0.0)
+#  ownervalue            :float(24)        default(0.0)
+#  agentvalue            :float(24)        default(0.0)
+#  cdpvalue              :float(24)        default(0.0)
+#  ownervaluepayeddate   :date
+#  agentvaluepayeddate   :date
+#  ownerpayed            :integer          default(0)
+#  agentpayed            :integer          default(0)
+#  totalpayonline        :float(24)
+#  totalpaylocal         :float(24)
+#  methodpay             :integer
+#  autocancel            :integer          default(0)
+#  daystocancel          :integer          default(0)
+#  reason                :text(65535)
+#  description           :text(65535)
+#  people                :text(65535)
+#  ownerdepositvalue     :float(24)        default(0.0)
+#  ownerbalancevalue     :float(24)        default(0.0)
+#  ownerdepositpayeddate :date
+#  ownerdepositpayed     :integer          default(0)
+#  itenerarysent         :integer
+#  vauchersent           :integer
+#
+
+require 'test_helper'
+
+class BookingTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+end

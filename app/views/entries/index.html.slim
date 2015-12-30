@@ -4,8 +4,12 @@
     -if current_user
       .col-md-12
         = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
-          =tab.owner 'Dados Pessoais', owner_path(current_user.id)
-          =tab.entries 'Propriedades', entries_path
+          -if session[:client_id]
+            =tab.client 'Dados Pessoais', client_path(session[:client_id])
+          -if session[:owner_id]
+            =tab.owner 'Dados Pessoais', owner_path(session[:owner_id]) 
+            =tab.entries 'Propriedades', entries_path
+            
         .col-md-12.border-style
           =link_to 'Adicionar',new_entry_path
           .col-md-12
@@ -25,7 +29,10 @@
                 
                   td =entry.ref
                   td =Country.find(entry.country).country
-                  td =City.find(entry.city).city
+                  -if City.exists?(entry.city)
+                    td =City.find(entry.city).city
+                  -else
+                    td 
                   td =entry.ranking
                   td 
                     =link_to 'Ver mais',entry_path(entry.id) 
