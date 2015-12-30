@@ -46,11 +46,18 @@ html
 						-else
 							li 
 								=link_to 'Contactos','/contacts'
-						-if current_user
+						
+						-if session[:owner_id]
 							li class="link-personal-area"
-								=link_to 'Área pessoal',owner_path(current_user.id)
+								=link_to 'Área pessoal',owner_path(current_user)
 							li class="btt-black logout"
-								= link_to "Logout", :logout, method: :post
+								= link_to "Logout", :owner_logout, method: :post
+						-elsif session[:client_id]
+
+							li class="link-personal-area"
+								=link_to 'Área pessoal',client_path(current_user)
+							li class="btt-black logout"
+								= link_to "Logout", :client_logout, method: :post		
 						-else
 							li role="presentation" class="btt-black dropdown"
 								a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
@@ -58,9 +65,9 @@ html
 									
 									ul class="dropdown-menu"
 										li 
-											=link_to 'Client',:login
+											=link_to 'Client',:client_login
 										li 
-											=link_to 'Owner',:login
+											=link_to 'Owner',:owner_login
 							
 		= yield
 

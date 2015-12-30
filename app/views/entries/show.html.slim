@@ -67,7 +67,8 @@
 						
 			.col-md-4.book-container
 				h3.txt-center
-					span.txt-center.red 76€ 
+					span.txt-center.red 
+					=Price.find(@entry.id).price
 				 	'por noite
 				hr
 				.icon-calendar

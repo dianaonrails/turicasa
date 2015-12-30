@@ -10,8 +10,10 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    if current_user
-      @entries = Entry.where(owner: current_user.id)
+    if session[:client_id]
+      @entries = Entry.all
+    elsif session[:owner_id]
+      @entries = Entry.where(owner: session[:owner_id])
     else  
       @entries = Entry.where(nil)
       @entries = @entries.region(params[:region_id]) if params[:region_id].present?

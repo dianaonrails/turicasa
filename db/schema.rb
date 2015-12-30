@@ -266,8 +266,7 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.integer "count", limit: 3, default: 0, null: false
   end
 
-  create_table "cities", id: false, force: :cascade do |t|
-    t.integer "id",           limit: 4,     null: false
+  create_table "cities", force: :cascade do |t|
     t.integer "optionnumber", limit: 4
     t.integer "language",     limit: 4
     t.integer "con",          limit: 4
@@ -277,8 +276,13 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.text    "description",  limit: 65535
   end
 
-  create_table "clients", id: false, force: :cascade do |t|
-    t.integer "id",                  limit: 4,                 null: false
+  add_index "cities", ["con"], name: "con", using: :btree
+  add_index "cities", ["cou"], name: "cou", using: :btree
+  add_index "cities", ["language"], name: "language", using: :btree
+  add_index "cities", ["optionnumber"], name: "optionnumber", using: :btree
+  add_index "cities", ["reg"], name: "reg", using: :btree
+
+  create_table "clients", force: :cascade do |t|
     t.string  "email",               limit: 100
     t.string  "password",            limit: 100
     t.integer "title",               limit: 4

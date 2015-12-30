@@ -2,7 +2,7 @@
 #
 # Table name: cities
 #
-#  id           :integer          not null
+#  id           :integer          not null, primary key
 #  optionnumber :integer
 #  language     :integer
 #  con          :integer

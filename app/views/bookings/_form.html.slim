@@ -1,0 +1,21 @@
+= form_for @booking do |f|
+  - if @booking.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@booking.errors.count, "error")} prohibited this booking from being saved:"
+      ul
+        - @booking.errors.full_messages.each do |message|
+          li = message
+
+  .show-field
+    = f.label 'Propriedade'
+    = f.collection_select(:entrie, Entry.all,:id,:name)
+  .show-field
+    =f.label 'Chegada'
+    =f.text_field :departure , class:'date-picker'
+  
+    =f.label 'Partida'
+    =f.text_field :arrival , class:'date-picker'    
+  
+  .actions.btt-black = f.submit
+
+  =render 'layouts/footer'
