@@ -1398,14 +1398,13 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.integer "time_last_run", limit: 4, default: 0, null: false
   end
 
-  create_table "prices", id: false, force: :cascade do |t|
-    t.integer "id",          limit: 4,                null: false
+  create_table "prices", force: :cascade do |t|
     t.integer "entrie",      limit: 4
     t.string  "description", limit: 50
     t.float   "price",       limit: 24, default: 0.0
     t.date    "from"
     t.date    "to"
-    t.integer "type",        limit: 4
+    t.integer "type_of",     limit: 4
   end
 
   create_table "prices_extras", id: false, force: :cascade do |t|

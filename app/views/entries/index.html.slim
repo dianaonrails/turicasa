@@ -1,7 +1,30 @@
-.container.public-container
-  .row
+.row.background-search
+  .col-md-4.book-container.index-search
+    =form_tag entries_path, :method => 'get', class:"form-group" do
+      .col-md-12
+        =image_tag('location-red.png')
+        .select-region
+          =select_tag "region_id", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: "Escolha a região",class:"form-control"
+      .col-md-12.break-space 
+        .icon-calendar
+          =image_tag('calendar-icons-red.png',width:'100%')
+        .col-md-5
+          =text_field_tag :check_in,nil,placeholder:'check-in', class:"form-control datepicker"
 
-    -if current_user
+        .icon-calendar    
+          =image_tag('calendar-icons-red.png',width:'100%')
+        .col-md-5
+          =text_field_tag :check_out,nil,placeholder:'check-out', class:"form-control datepicker"
+      .col-md-12.break-space
+        .icon-guests
+          =image_tag('multiple25-red.png',width:'100%')
+        .col-md-5
+          =select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
+        .col-md-5.btt-book
+          =submit_tag "Pesquisar", class:'btt-black'
+.container.search-container
+  .row
+    -if session[:owner_id]
       .col-md-12
         = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
           -if session[:client_id]
@@ -40,8 +63,10 @@
                     =link_to 'Editar',edit_entry_path(entry.id)
 
     -else  
+
       .col-md-12
-        h1 Results
+
+        span.title Results
         hr
       .col-md-12
         - @entries.each do |entry|
@@ -55,13 +80,27 @@
                 'Ref.
                 =entry.ref
               .reviews
-                h4.grey Classificação
+                h4.grey
+                  -if entry.ranking > 0
+                    'Reviews
+                    -entry.ranking.times do
+                      .star
+                        =image_tag('star129.png')
+                  -else
+                    'No reviews 
 
               h4.grey
                 'Estadia minima (dias) -
                 =entry.minimunrental
             .col-md-4
-              h1 Noite 
+              -if Price.exists?(entry.id)
+                h2.show-price
+                  span.txt-center.red =Price.find(entry.id).price.round
+                  ' €
+                  span Noite
+              -else
+                span sem registo de preço
+              
               .btt-see-more
                 =link_to 'Detalhes',entry_path(entry.id)
             .col-md-12
@@ -75,7 +114,27 @@
                 ' pessoas  
               h4.grey 
                 'Comodidades:
-
+              -if entry.isprivateswimmingpool
+                span Piscina privada
+                '&nbsp;
+              -if entry.issharedswimmingpool
+                span Piscina partilhada
+                '&nbsp;
+              -if entry.isgarage
+                span Garagem
+                '&nbsp;
+              -if entry.isgarden
+                span Jardim
+                '&nbsp;
+              -if entry.isterrace
+                span Terraço
+                '&nbsp;
+              -if entry.isairconditioning
+                span Ar condicionado
+                '&nbsp;
+              -if entry.iskitchen
+                span Cozinha
+                '&nbsp;           
               hr    
 =render 'layouts/footer'
 

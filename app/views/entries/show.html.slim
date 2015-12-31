@@ -11,10 +11,13 @@
 					=@entry.ref
 
 				h2.grey 
-					'Reviews
-					-@entry.ranking.times do
-						.star
-							=image_tag('star129.png')
+					-if @entry.ranking > 0
+						'Reviews
+						-@entry.ranking.times do
+							.star
+								=image_tag('star129.png')
+					-else
+						'No reviews			
 				.space
 				h4.grey 	
 					=@entry.nobedroms
@@ -65,31 +68,43 @@
 								=link_to "http://www.cdpreisen.de/admin/upload/" + photo.photo, :'data-gallery' => 'that'
 									=image_tag("http://www.cdpreisen.de/admin/upload/" + photo.photo)
 						
-			.col-md-4.book-container
+			.col-md-4.book-container.add-margin-top
 				h3.txt-center
-					span.txt-center.red 
-					=Price.find(@entry.id).price
-				 	'por noite
+				
+					-if Price.exists?(@entry.id)
+						span.txt-center.red =Price.find(@entry.id).price.round
+						'€
+						span por noite
+					-else
+						span sem registo de preço	
+
+				 	
 				hr
-				.icon-calendar
-					=image_tag('calendar-icons-red.png',width:'100%')
-				.col-md-5
-					=text_field_tag :check_in,nil,placeholder:'check-in', class:"form-control datepicker"
-				.icon-calendar		
-					=image_tag('calendar-icons-red.png',width:'100%')
-				.col-md-5
-					=text_field_tag :check_out,nil,placeholder:'check-out', class:"form-control datepicker"
-				.break-space
-					.icon-guests
-						=image_tag('multiple25-red.png',width:'100%')
+				=form_tag new_booking_path, method: :push
+					.icon-calendar
+						=image_tag('calendar-icons-red.png',width:'100%')
 					.col-md-5
-						=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
-				.col-md-12.btt-book
-					=submit_tag "Book it Now!", class:'btt-black'
+						=text_field_tag :check_in,nil,placeholder:'check-in', class:"form-control datepicker"
+					.icon-calendar		
+						=image_tag('calendar-icons-red.png',width:'100%')
+					.col-md-5
+						=text_field_tag :check_out,nil,placeholder:'check-out', class:"form-control datepicker"
+					.break-space
+						.icon-guests
+							=image_tag('multiple25-red.png',width:'100%')
+						.col-md-5
+							=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
+					.col-md-12.btt-book
+						=submit_tag "Book it Now!", class:'btt-black'
 			hr.line-bottom
 		.col-md-12
 			h1.sub-title.black.bold Descrição
+			-if Description.exists?(entrie: @entry.id,language: 2)
+				p.description =raw Description.where(entrie: @entry.id, language: 2).first.despcription
+			-else
+				span Não há descrição	
 			hr.line-bottom
+			
 		.col-md-12
 			h1.sub-title.black.bold Comodidades
 			.col-md-4
@@ -276,13 +291,14 @@
 					=reviews.size
 					' 
 					'reviews
+			
 				
-			.col-md-4.btt-see-more.margin
-				=link_to 'Escrever uma review', ''
+
 
 			-if @entry.entries_reviews(@entry).nil?	
 				h3 No records
 			-else
+
 				-reviews  = @entry.entries_reviews(@entry)
 				-reviews.each do |review|
 					.col-md-12.review
@@ -291,4 +307,17 @@
 						.col-md-10
 							=raw(review.review)	
 						hr.line-bottom
+			-if session[:client_id]
+				
+					=form_for @entries_review do |f|
+						.col-md-8
+							=f.hidden_field :entrie, value: @entry.id
+							.show-field
+								=label_tag 'Nova review'
+								br
+								=f.text_area :review, cols:'75', rows:'5'
+						.col-md-4.btt-see-more.margin
+							=f.submit 'Escrever review', class:"btt-see-more"
+
+
 =render 'layouts/footer'

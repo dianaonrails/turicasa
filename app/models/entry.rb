@@ -185,7 +185,13 @@ class Entry < ActiveRecord::Base
 	has_many :entries_discounts
 	has_many :entries_reviews
 	has_many :photos
+
+	scope :active, -> {where active: 1}
+	scope :approved, -> { where approved: 1}
 	scope :region, -> (region) { where region: region }
+	scope :guests, -> (guests) { where sleeps: guests}
+	scope :check_in, -> (check_in) { where whichdaystart: check_in}
+	scope :check_out, -> (check_out) { where whichdayend: check_out}
 
 	def entries_reviews(entry)
 		begin

@@ -11,23 +11,30 @@ class EntriesController < ApplicationController
   # GET /entries.json
   def index
 
+    @regions = Region.all
     if session[:client_id]
-      @entries = Entry.all
+      @entries = Entry.active
     elsif session[:owner_id]
       @entries = Entry.where(owner: session[:owner_id])
     else  
-      @entries = Entry.where(nil)
-      @entries = @entries.region(params[:region_id]) if params[:region_id].present?
+      @entries = Entry.active.approved
+      filtering_params(params).each do |key, value|
+        @entries = @entries.public_send(key, value) if value.present?
+      end
+      #@entries = @entries.region(params[:region_id]) if params[:region_id].present?
+      #@entries = @entries.region(params[:region_id]).guests(params[:guests]) if params[:region_id].present? && params[:guests].present?
+      
     end  
 
     
   end
 
+
   # GET /entries/1
   # GET /entries/1.json
   def show
     @entry = Entry.find(params[:id])
-
+    @entries_review = EntriesReview.new
   end
 
   
@@ -87,7 +94,9 @@ class EntriesController < ApplicationController
       @entry = Entry.find(params[:id])
     end
 
-    
+    def filtering_params(params)
+      params.slice(:location, :guests, :check_in,:check_out)
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
