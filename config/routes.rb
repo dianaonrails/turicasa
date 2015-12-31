@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'contacts' => 'public#contacts'
   get 'about' => 'public#about'
 
+  resources :entries_reviews
 
   resources :entries do
     collection do

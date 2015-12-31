@@ -2,7 +2,7 @@
 #
 # Table name: entries_reviews
 #
-#  id     :integer          not null
+#  id     :integer          not null, primary key
 #  entrie :integer
 #  review :text(65535)
 #

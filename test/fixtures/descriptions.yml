@@ -1,14 +1,11 @@
 # == Schema Information
 #
-# Table name: prices
+# Table name: descriptions
 #
-#  id          :integer          not null, primary key
-#  entrie      :integer
-#  description :string(50)
-#  price       :float(24)        default(0.0)
-#  from        :date
-#  to          :date
-#  type_of     :integer
+#  id           :integer          not null, primary key
+#  entrie       :integer
+#  language     :integer
+#  despcription :text(4294967295)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
