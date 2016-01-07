@@ -25,7 +25,7 @@ class EntriesController < ApplicationController
       #@entries = @entries.region(params[:region_id]).guests(params[:guests]) if params[:region_id].present? && params[:guests].present?
       
     end  
-    @entries = Entry.active.approved
+
     
   end
 
