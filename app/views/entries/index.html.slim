@@ -44,6 +44,7 @@
                 th Cidade
                 th Ranking
                 th
+
               - @entries.each do |entry|
                 
                 tr
@@ -69,76 +70,77 @@
         span.title Results
         hr
       .col-md-12
-        - @entries.each do |entry|
-          .row.entry
-            .col-md-4.image-display
-              =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
-            .col-md-4
-              h1
-                =entry.name
-              h3.grey 
-                'Ref.
-                =entry.ref
-              .reviews
-                h4.grey
-                  -if entry.ranking > 0
-                    'Reviews
-                    -entry.ranking.times do
-                      .star
-                        =image_tag('star129.png')
-                  -else
-                    'No reviews 
+        -if !@entries.nil?
+          - @entries.each do |entry|
+            .row.entry
+              .col-md-4.image-display
+                =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+              .col-md-4
+                h1
+                  =entry.name
+                h3.grey 
+                  'Ref.
+                  =entry.ref
+                .reviews
+                  h4.grey
+                    -if entry.ranking > 0
+                      'Reviews
+                      -entry.ranking.times do
+                        .star
+                          =image_tag('star129.png')
+                    -else
+                      'No reviews 
 
-              h4.grey
-                =t('entries.minimun')
-                =entry.minimunrental
-                =t('entries.days')
-            .col-md-4
-              -if Price.exists?(entry.id)
-                h2.show-price
-                  span.txt-center.red =Price.find(entry.id).price.round
-                  ' €
+                h4.grey
+                  =t('entries.minimun')
+                  =entry.minimunrental
+                  =t('entries.days')
+              .col-md-4
+                -if Price.exists?(entry.id)
+                  h2.show-price
+                    span.txt-center.red =Price.find(entry.id).price.round
+                    ' €
+                    span 
+                      =t('entries.bynight')
+                -else
                   span 
-                    =t('entries.bynight')
-              -else
-                span 
-                  =t('noprice')
-              
-              .btt-see-more
-                =link_to t('buttons.details'),entry_path(entry.id)
-            .col-md-12
-              h3.bold 
-                =entry.nobedroms 
-                '
-                =t('entries.room')
-                '&nbsp;
-                =entry.sleeps 
-                '
-                =t('entries.people')
-              h4.grey 
-                =t('entries.facilities')
-              -if entry.isprivateswimmingpool
-                span =Language.find(get_languageid(I18n.locale.to_s)).PRIVATE_SWIMMINGPOOL
-                '&nbsp;
-              -if entry.issharedswimmingpool
-                span =Language.find(get_languageid(I18n.locale.to_s)).SHARED_SWIMMINGPOOL
-                '&nbsp;
-              -if entry.isgarage
-                span =Language.find(get_languageid(I18n.locale.to_s)).GARAGE
-                '&nbsp;
-              -if entry.isgarden
-                span =Language.find(get_languageid(I18n.locale.to_s)).GARDEN
-                '&nbsp;
-              -if entry.isterrace
-                span =Language.find(get_languageid(I18n.locale.to_s)).TERRACE
-                '&nbsp;
-              -if entry.isairconditioning
-                span =Language.find(get_languageid(I18n.locale.to_s)).AIR_CONDITIONING
-                '&nbsp;
-              -if entry.iskitchen
-                span =Language.find(get_languageid(I18n.locale.to_s)).KITCHEN
-                '&nbsp;           
-              hr    
+                    =t('noprice')
+                
+                .btt-see-more
+                  =link_to t('buttons.details'),entry_path(entry.id)
+              .col-md-12
+                h3.bold 
+                  =entry.nobedroms 
+                  '
+                  =t('entries.room')
+                  '&nbsp;
+                  =entry.sleeps 
+                  '
+                  =t('entries.people')
+                h4.grey 
+                  =t('entries.facilities')
+                -if entry.isprivateswimmingpool
+                  span =Language.find(get_languageid(I18n.locale.to_s)).PRIVATE_SWIMMINGPOOL
+                  '&nbsp;
+                -if entry.issharedswimmingpool
+                  span =Language.find(get_languageid(I18n.locale.to_s)).SHARED_SWIMMINGPOOL
+                  '&nbsp;
+                -if entry.isgarage
+                  span =Language.find(get_languageid(I18n.locale.to_s)).GARAGE
+                  '&nbsp;
+                -if entry.isgarden
+                  span =Language.find(get_languageid(I18n.locale.to_s)).GARDEN
+                  '&nbsp;
+                -if entry.isterrace
+                  span =Language.find(get_languageid(I18n.locale.to_s)).TERRACE
+                  '&nbsp;
+                -if entry.isairconditioning
+                  span =Language.find(get_languageid(I18n.locale.to_s)).AIR_CONDITIONING
+                  '&nbsp;
+                -if entry.iskitchen
+                  span =Language.find(get_languageid(I18n.locale.to_s)).KITCHEN
+                  '&nbsp;           
+                hr    
 =render 'layouts/footer'
 
       
