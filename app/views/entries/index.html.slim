@@ -24,46 +24,6 @@
           =submit_tag Language.find(get_languageid(I18n.locale.to_s)).SEARCH, class:'btt-black'
 .container.search-container
   .row
-    -if session[:owner_id]
-      .col-md-12
-        = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
-          -if session[:client_id]
-            =tab.client 'Dados Pessoais', client_path(session[:client_id])
-          -if session[:owner_id]
-            =tab.owner 'Dados Pessoais', owner_path(session[:owner_id]) 
-            =tab.entries 'Propriedades', entries_path
-            
-        .col-md-12.border-style
-          =link_to 'Adicionar',new_entry_path
-          .col-md-12
-            table class="table table-striped"
-              tr
-                th Nome
-                th Ref
-                th País
-                th Cidade
-                th Ranking
-                th
-
-              - @entries.each do |entry|
-                
-                tr
-                  
-                  td =entry.name
-                
-                  td =entry.ref
-                  td =Country.find(entry.country).country
-                  -if City.exists?(entry.city)
-                    td =City.find(entry.city).city
-                  -else
-                    td 
-                  td =entry.ranking
-                  td 
-                    =link_to 'Ver mais',entry_path(entry.id) 
-                    '/ 
-                    =link_to 'Editar',edit_entry_path(entry.id)
-
-    -else  
 
       .col-md-12
 

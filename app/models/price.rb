@@ -12,4 +12,5 @@
 #
 
 class Price < ActiveRecord::Base
+	belongs_to :entry, :class_name => "Entry", :foreign_key => 'entrie'
 end

@@ -186,6 +186,8 @@ class Entry < ActiveRecord::Base
 	has_many :entries_reviews
 	has_many :photos
 
+	has_many :prices
+
 	scope :active, -> {where active: 1}
 	scope :approved, -> { where approved: 1}
 	scope :region, -> (region) { where region: region }
@@ -208,4 +210,6 @@ class Entry < ActiveRecord::Base
         	@photos = 0
       	end
 	end	
+
+	accepts_nested_attributes_for :prices, allow_destroy: true
 end

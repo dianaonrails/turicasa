@@ -1,0 +1,46 @@
+.container.public-container
+  .row
+    .col-md-12
+      h1
+        =Language.find(get_languageid(I18n.locale.to_s)).WELCOME
+        = current_user.firstname
+        ' 
+        = current_user.lastname
+    
+    .col-md-12
+        = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
+            =tab.owner t('backoffice.personaldata'), owner_path(session[:owner_id]) 
+            =tab.entries t('backoffice.proprieties'), entries_owner_sessions_path
+            
+        .col-md-12.border-style
+          =link_to Language.find(get_languageid(I18n.locale.to_s)).ADD_NEW,new_entry_path
+          .col-md-12
+            table class="table table-striped"
+              tr
+                th
+                  =Language.find(get_languageid(I18n.locale.to_s)).NAME_ENTRIE
+                th Ref
+                th 
+                  =Language.find(get_languageid(I18n.locale.to_s)).COUNTRY
+                th 
+                  =Language.find(get_languageid(I18n.locale.to_s)).CITY
+                th Ranking
+                th
+              - @entries.each do |entry|
+                
+                tr
+                  
+                  td =entry.name
+                
+                  td =entry.ref
+                  td =Country.find(entry.country).country
+                  -if City.exists?(entry.city)
+                    td =City.find(entry.city).city
+                  -else
+                    td 
+                  td =entry.ranking
+                  td 
+                    =link_to t('buttons.seemore'),entry_path(entry.id) 
+                    '/ 
+                    =link_to Language.find(get_languageid(I18n.locale.to_s)).EDIT,edit_entry_path(entry.id)
+  

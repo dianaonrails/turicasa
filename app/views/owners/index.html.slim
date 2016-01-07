@@ -2,11 +2,11 @@
   .row
     .col-md-12
       h1
-        'Bem-vindo
+        =Language.find(get_languageid(I18n.locale.to_s)).WELCOME
         = current_user.firstname
         ' 
         = current_user.lastname
     .col-md-12
       = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
-        =tab.owner 'Dados Pessoais', owner_path(current_user.id)
-        =tab.entries 'Propriedades', entries_path
+        =tab.owner t('backoffice.personaldata'), owner_path(current_user.id)
+        =tab.entries t('backoffice.proprieties'), entries_owner_sessions_path

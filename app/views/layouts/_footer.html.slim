@@ -1,7 +1,7 @@
 .row.popular-destinations
 	.container
 		hr
-		.col-md-5.no-padding
+		.col-md-5
 			.name
 				span.white Algarve
 			=image_tag("algarve_beach.jpg")
@@ -23,10 +23,10 @@
 	.container
 		ul
 			li
-				=link_to 'Home','/'
+				=link_to Language.find(get_languageid(I18n.locale.to_s)).HOME,'/'
 			li
-				=link_to 'Sobre nos',''	
+				=link_to t('menu.about'),'/about'	
 			li
 				=link_to 'Faq',''
 			li
-				=link_to 'Contactos','/contacts'	
+				=link_to t('menu.contacts'),'/contacts'	

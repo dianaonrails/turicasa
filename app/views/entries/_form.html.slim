@@ -8,55 +8,87 @@
 
  	.col-md-12
  		.show-field
-	 		=label_tag 'Nome:'
+	 		=label_tag Language.find(get_languageid(I18n.locale.to_s)).NAME_ENTRIE
 	 		=f.text_field :name
+
 	 	.panel.panel-default
-	 		.panel-heading	Preços / Disponibilidade / Reservas
+	 		.panel-heading	
+	 			=Language.find(get_languageid(I18n.locale.to_s)).PRICES_AV_BO
 	 		.panel-body
-		 		.show-field
-		 			=label_tag 'Desde:'
-		 			=text_field_tag 'desde',nil, class:'datepicker'
-		 			=label_tag 'ate:'
-		 			=text_field_tag 'ate',nil, class:'datepicker'
+		 		
+		 		.col-md-12
+		 			=f.fields_for :prices, Price.new do |prices_fields|
+		 				.col-md-3
+			 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).FROM
+				 			=prices_fields.text_field :from, class:'datepicker'
+			 			.col-md-3
+				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).TO
+				 			=prices_fields.text_field :to, class:'datepicker'
+			 			.col-md-3
+				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).PRICE
+				 			=prices_fields.text_field :price
+			 			.col-md-3
+				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).DESCRIPTION
+				 			=prices_fields.text_field :description
+
 		.panel.panel-default
-	 		.panel-heading Livro de hóspedes
+	 		.panel-heading 
+	 			=Language.find(get_languageid(I18n.locale.to_s)).TECH_INFO
 	 		.panel-body
+	 			.col-md-4
+	 				.field
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).COUNTRY
+			 			=f.collection_select(:country,Country.where(language: get_languageid(I18n.locale.to_s)),:id,:country, required:true, class:"form-control")
+			 		.field
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).CITY
+			 			=f.collection_select(:city,City.where(language: get_languageid(I18n.locale.to_s)),:id,:city, required:true, class:"form-control")
+			 	.col-md-3		
+			 		
+		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).NUMBER_SLEEPS
+		 			=f.text_field :sleeps
+			 	.col-md-3
+		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).MINIMUN_RENTAL
+		 			=f.text_field :minimunrental
+			 	.col-md-3
+		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).CATERING
+		 			=f.collection_select(:catering,OptionsCatering.where(language: get_languageid(I18n.locale.to_s)),:id,:option, required:true)			
+
 	 	.panel.panel-default
 	 		.panel-heading Informação adicional
 	 		.panel-body	
 	 			.col-md-4
 		 			.field
-		 				=label_tag 'Cidade'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).CITY
 		 				=f.check_box :iscity
 		 			.field
-		 				=label_tag 'Prais'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).BEACH
 		 				=f.check_box :isbeach
 		 			.field
-		 				=label_tag 'Campo'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).COUNTRYSIDE
 		 				=f.check_box :iscountryside	
 		 			.field
-		 				=label_tag 'Rural'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).RURAL
 	 					=f.check_box :isrural
 	 				.field
 		 				=label_tag 'Sky area'
 	 					=f.check_box :isskiarea
 	 				.field
-		 				=label_tag 'Montanhas'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).MOUNTAINS
 	 					=f.check_box :ismountains
 	 				.field
-		 				=label_tag 'Cozinha'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).KITCHEN
 	 					=f.check_box :iskitchen	
 	 				.field
 		 				=label_tag 'kitchinette'
 	 					=f.check_box :iskitchinette	
 	 				.field
-		 				=label_tag 'Sala de jantar'
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).SEPARATE_DINING
 	 					=f.check_box :isseparatedining
 	 				.field
-	 					=label_tag 'Lareira'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).FIRE_PLACE
 	 					=f.check_box :isfireplace
 	 				.field
-	 					=label_tag 'Telefone'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).TELEPHONE
 	 					=f.check_box :istelephone
 	 				.field
 	 					=label_tag 'fax'
@@ -65,31 +97,31 @@
 	 					=label_tag 'internet wi-fi'
 	 					=f.check_box :isinternetwificonnection	
 	 				.field
-	 					=label_tag 'Vista para o lago'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).LAKE_VIEW
 	 					=f.check_box :islakeview
 	 				.field
-	 					=label_tag 'Vista para a piscina'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).POOL_VIEW
 	 					=f.check_box :ispoolview
 	 				.field
-	 					=label_tag 'Jardim'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).GARDEN
 	 					=f.check_box :isgarden
 	 				.field
-	 					=label_tag 'Terraço'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).GARDEN
 	 					=f.check_box :isterrace	
 	 				.field
 	 					=label_tag 'BBQ'
 	 					=f.check_box :isbbq	
 	 				.field
-	 					=label_tag 'Piscina privada'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).PRIVATE_SWIMMINGPOOL
 	 					=f.check_box :isprivateswimmingpool
 	 				.field
-	 					=label_tag 'Piscina partilhada'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).SHARED_SWIMMINGPOOL	
 	 					=f.check_box :issharedswimmingpool	
 	 				.field
 	 					=label_tag 'Jacuzzi'
 	 					=f.check_box :isjacuzzi	
 	 				.field
-	 					=label_tag 'Vida noturna'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).NIGHTLIFE
 	 					=f.check_box :isnightlife
 	 				.field
 	 					=label_tag 'Parasailing'
@@ -99,61 +131,61 @@
 	 					=f.check_box :isskiing															
 	 			.col-md-4
 	 				.field
-	 					=label_tag 'Fogão'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).COOKER
 	 					=f.check_box :iscooker
 	 				.field
-	 					=label_tag 'Forno'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).OVE
 	 					=f.check_box :isove	
 	 				.field
-	 					=label_tag 'Microondas'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).MICROWAVE
 	 					=f.check_box :ismicrowave
 	 				.field
-	 					=label_tag 'Frigorífico'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).REFRIGERATOR
 	 					=f.check_box :isrefrigerator
 	 				.field
-	 					=label_tag 'Congelador'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).FREEZER
 	 					=f.check_box :isfreezer	
 	 				.field
-	 					=label_tag 'Torradeira'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).TOASTER
 	 					=f.check_box :istoaster	
 	 				.field
-	 					=label_tag 'Máquina de café'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).COFFE_MACHINE
 	 					=f.check_box :iscoffemachine	
 	 				.field
-	 					=label_tag 'Máquina de lavar loiça'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).DISH_WATER
 	 					=f.check_box :isdishwater							
 	 				.field
-	 					=label_tag 'Máquina de lavar roupa'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).WASH_MACHINE
 	 					=f.check_box :iswashmachine
 	 				.field
-	 					=label_tag 'iskitchenware'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).KITCHEN_WARE
 	 					=f.check_box :iskitchenware
 	 				.field
-	 					=label_tag 'alarme'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).ALARM
 	 					=f.check_box :isalarm
 	 				.field
 	 					=label_tag 'tv'
 	 					=f.check_box :istv
 	 				.field
-	 					=label_tag 'tv cabo'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).CABLE_SATELITE_TV
 	 					=f.check_box :iscablesatelitetv
 	 				.field
-	 					=label_tag 'sauna'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).SAUNA
 	 					=f.check_box :issauna
 	 				.field
-	 					=label_tag 'Vista para o rio'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).RIVER_VIEW
 	 					=f.check_box :isriverview	
 	 				.field
-	 					=label_tag 'Mesa de ténis'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).TABLE_TENNIS
 	 					=f.check_box :istabletennis
 	 				.field
-	 					=label_tag 'Campo de ténis'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).TENNIS_COURT
 	 					=f.check_box :istenniscourt
 	 				.field
-	 					=label_tag 'Parque privado'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).PRIVATE_PARKING
 	 					=f.check_box :isprivateparking
 	 				.field
-	 					=label_tag 'Garagem'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).GARAGE
 	 					=f.check_box :isgarage
 	 				.field
 	 					=label_tag 'Golf'
@@ -162,36 +194,34 @@
 	 					=label_tag 'Kayaking'
 	 					=f.check_box :iskayaking
 	 				.field
-	 					=label_tag 'Museus'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).MUSEUM
 	 					=f.check_box :ismuseum
 
 	 			.col-md-4
+	 				
 	 				.field
-	 					=label_tag 'ispotspans'
-	 					=f.check_box :ispotspans
-	 				.field
-	 					=label_tag 'isglassware'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).GLASSWARE
 	 					=f.check_box :isglassware
 	 				.field
-	 					=label_tag 'isbedlinen'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).BEDLINEN
 	 					=f.check_box :isbedlinen
 	 				.field
-	 					=label_tag 'Toalhas'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).TOWELS
 	 					=f.check_box :istowels
 	 				.field
-	 					=label_tag 'Aquecimento central'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).CENTRAL_HEATING
 	 					=f.check_box :iscentralheating
 	 				.field
-	 					=label_tag 'Ar condicionado'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).AIR_CONDITIONING
 	 					=f.check_box :isairconditioning
 	 				.field
-	 					=label_tag 'Ventoinhas'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).CEILING_FANS
 	 					=f.check_box :isceilingfans	
 	 				.field
-	 					=label_tag 'Ventiladores'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).VENTILATORS
 	 					=f.check_box :isventilators	
 	 				.field
-	 					=label_tag 'Aquecimento eléctrico'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).ELECTRICAL_HEATERS
 	 					=f.check_box :iselectricalheaters
 	 				.field
 	 					=label_tag 'radio'
@@ -206,34 +236,34 @@
 	 					=label_tag 'cd player'
 	 					=f.check_box :iscdplayer
 	 				.field
-	 					=label_tag 'Vista para montanhas'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).MOUNTAINS
 	 					=f.check_box :ismountainsview
 	 				.field
-	 					=label_tag 'Balcão'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).BALCONY
 	 					=f.check_box :isbalcony		
 	 				.field
-	 					=label_tag 'Bicicleta'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).BIKING
 	 					=f.check_box :isbiking
 	 				.field
-	 					=label_tag 'Barco'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).BOATING
 	 					=f.check_box :isboating
 	 				.field
-	 					=label_tag 'Pesca'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).FISHING
 	 					=f.check_box :isfishing
 	 				.field
-	 					=label_tag 'Cavalos'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).HORSEBACK_RIDING
 	 					=f.check_box :ishorsebackriding
 	 				.field
-	 					=label_tag 'Caça'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).HUNTING
 	 					=f.check_box :ishunting
 	 				.field
 	 					=label_tag 'Jetskiing'
 	 					=f.check_box :isjetskiing	
 	 				.field
-	 					=label_tag 'Escalada'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).ROCK_CLIMBING
 	 					=f.check_box :isrockclimbing
 	 				.field
-	 					=label_tag 'Mergulho'
+	 					=label_tag Language.find(get_languageid(I18n.locale.to_s)).SCUBADIVING
 	 					=f.check_box :isscubadiving									
 
-	.actions.btt-black = f.submit 'Actualizar'
+	.actions.btt-black = f.submit
