@@ -22,17 +22,17 @@
 				h4.grey 	
 					=@entry.nobedroms
 					' 
-					'Quartos
+					=t('entries.room')
 				h4.grey
 					=@entry.sleeps
 					' 
-					'Pessoas
+					=t('entries.people')
 				h4.grey
-					'Minimo
+					=t('entries.minimum')
 					' 
 					=@entry.minimunrental
 					' 
-					' de dias
+					=t('entries.days')
 
 			.col-md-8.show-image-display
 				=image_tag("http://www.cdpreisen.de/admin/upload/" + @entry.fotoprincipal)
@@ -74,9 +74,11 @@
 					-if Price.exists?(@entry.id)
 						span.txt-center.red =Price.find(@entry.id).price.round
 						'€
-						span por noite
+						span 
+							=t('entries.bynight')
 					-else
-						span sem registo de preço	
+						span 
+							=t('noprice')
 
 				 	
 				hr
@@ -95,118 +97,122 @@
 						.col-md-5
 							=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
 					.col-md-12.btt-book
-						=submit_tag "Book it Now!", class:'btt-black'
+						=submit_tag t("entries.booknow"), class:'btt-black'
 			hr.line-bottom
 		.col-md-12
-			h1.sub-title.black.bold Descrição
+			h1.sub-title.black.bold 
+				=t('entries.description')
 			-if Description.exists?(entrie: @entry.id,language: 2)
 				p.description =raw Description.where(entrie: @entry.id, language: 2).first.despcription
 			-else
-				span Não há descrição	
+				span 
+					=t('entries.nodescription')
 			hr.line-bottom
 			
 		.col-md-12
-			h1.sub-title.black.bold Comodidades
+			h1.sub-title.black.bold 
+				=t("entries.facilities")
 			.col-md-4
 				-if @entry.pets
 					span.grey Permite animais
 					br
 				-if @entry.iscooker
-					span.grey Fogão
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).COOKER
 					br
 				-if @entry.isrefrigerator
-					span.grey Frigorífico
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).REFRIGERATOR
 					br	
 				-if @entry.iscoffemachine
-					span.grey Máquina de café
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).COFFE_MACHINE
 					br	
 				-if @entry.isdishwater
-					span.grey Máquina de lavar loiça
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).DISH_WATER
 					br	
 				-if @entry.iswashmachine
-					span.grey Máquina de lavar roupa
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).WASH_MACHINE
 					br
 				-if @entry.istowels
-					span.grey Toalhas
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).TOWELS
 					br
 				
 				-if @entry.isgarage
-					span.grey Garagem
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).GARAGE
 					br	
 				-if @entry.isprivateparking
-					span.grey Parque de estacionamento privado
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).PRIVATE_PARKING
 					br		
 			.col-md-4
 				-if @entry.iscentralheating
-					span.grey Aquecimento central
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).CENTRAL_HEATING
 					br
 				-if @entry.isairconditioning
-					span.grey Ar condicionado
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).AIR_CONDITIONING
 					br
 				-if @entry.isfireplace
-					span.grey Lareira
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).FIRE_PLACE
 					br
 				-if @entry.istelephone
-					span.grey Telefone
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).TELEPHONE
 					br
 				-if @entry.isfax
-					span.grey Fax
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).FAX
 					br
 				-if @entry.isinternetwificonnection
-					span.grey Wi-fi
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).INTERNET_WITH_COMPUTER
 					br
 				-if @entry.isalarm
-					span.grey Alarme
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).ALARM
 					br
 			.col-md-4
 				-if @entry.istv
 					span.grey TV
 					br
 				-if @entry.iscablesatelitetv
-					span.grey TV cabo
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).CABLE_SATELITE_TV
 					br
 				-if	@entry.isradio
-					span.grey Radio
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).RADIO
 					br
 				-if @entry.issauna
-					span.grey Sauna
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).SAUNA
 					br
 				-if @entry.isterrace
-					span.grey Terraço
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).TERRACE
 					br
 				-if @entry.isprivateswimmingpool
-					span.grey Piscina privada
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).PRIVATE_SWIMMINGPOOL
 					br
 				-if @entry.issharedswimmingpool
-					span.grey Piscina partilhada
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).SHARED_SWIMMINGPOOL
 					br
 				-if @entry.isjacuzzi
 					span.grey Jacuzzi
 					br
 			hr.line-bottom
 		.col-md-12
-			h1.sub-title.black.bold Atividades
+			h1.sub-title.black.bold 
+				=t('entries.activities')
 			.col-md-4
 				-if @entry.istabletennis
-					span.grey Ping-pong
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).TABLE_TENNIS
 					br
 				-if @entry.istenniscourt
-					span.grey Campo de ténis
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).TENNIS_COURT
 					br
 				-if @entry.isgolf
 					span.grey Golf
 					br
 				-if @entry.isfishing
-					span.grey Pesca
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).FISHING
 					br
 				-if @entry.isbiking
-					span.grey Bicicleta
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).BIKING
 					br
 				-if @entry.ishorsebackriding
-					span.grey Cavalgar
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).HORSEBACK_RIDING
 					br
 				-if @entry.ishunting
-					span.grey Caçar
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).HUNTING
 					br
 			.col-md-4
 				-if @entry.isjetskiing
@@ -216,7 +222,7 @@
 					span.grey Kayaking
 					br
 				-if @entry.isrockclimbing
-					span.grey Escalada
+					span.grey =Language.find(get_languageid(I18n.locale.to_s)).ROCK_CLIMBING
 					br
 				-if @entry.issnowboarding
 					span.grey Snowboard
@@ -229,7 +235,8 @@
 					br
 			hr.line-bottom
 		.col-md-12
-			h1.sub-title.black.bold Distâncias
+			h1.sub-title.black.bold
+				=t('entries.distance')
 			.col-md-4
 				span.grey 
 					=@entry.airportname 
@@ -237,7 +244,7 @@
 				br
 				-if !@entry.airportdistance.blank?
 					span.grey
-						'Aeroporto
+						=Language.find(get_languageid(I18n.locale.to_s)).AIRPORT_DISTANCE
 						' 
 						=@entry.airportdistance
 						=@entry.airportunit
@@ -251,7 +258,7 @@
 					br
 				-if !@entry.beachdistance.blank?
 					span.grey
-						'Praia
+						=Language.find(get_languageid(I18n.locale.to_s)).BACH_DISTANCE
 						' 
 						=@entry.beachdistance
 						=@entry.beachunit
@@ -259,21 +266,21 @@
 			.col-md-4		
 				-if !@entry.shoppingdistance.blank?
 					span.grey
-						'Lojas
+						=Language.find(get_languageid(I18n.locale.to_s)).SHOPPING_DISTANCE
 						' 
 						=@entry.shoppingdistance
 						=@entry.shoppingunit
 					br	
 				-if !@entry.restaurantdistance.blank?
 					span.grey
-						'Restaurantes
+						=Language.find(get_languageid(I18n.locale.to_s)).RESTAURANT_DISTANCE
 						' 
 						=@entry.restaurantdistance
 						=@entry.restaurantunit
 					br
 				-if !@entry.waterparkdistance.blank?
 					span.grey
-						'Waterpark
+						=Language.find(get_languageid(I18n.locale.to_s)).WATERPARK_DISTANCE
 						' 
 						=@entry.waterparkdistance
 						=@entry.waterparkunit

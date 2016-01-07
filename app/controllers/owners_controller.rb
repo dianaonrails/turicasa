@@ -1,5 +1,5 @@
 class OwnersController < ApplicationController
-  before_filter :save_login_state, :only => [:new, :create]
+  #before_filter :save_login_state, :only => [:new, :create]
   set_tab :owner
   def login
   end   
