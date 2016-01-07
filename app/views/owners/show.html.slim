@@ -3,8 +3,8 @@
 		.col-md-12
 			-if session[:owner_id]
 				= tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
-	          		=tab.owner 'Dados Pessoais', owner_path(current_user.id)
-	         		=tab.entries 'Propriedades', entries_path
+	          		=tab.owner t('backoffice.personaldata'), owner_path(current_user.id)
+	         		=tab.entries t('backoffice.proprieties'), entries_owner_sessions_path
 			.col-md-12.border-style
 				p#notice = notice
 				h2
@@ -20,37 +20,45 @@
 						span.grey Email:
 						span =@owner.email	
 					.show-field
-						span.grey Telefone casa: 
+						span.grey
+							=t('new.phonehome')
 						span =@owner.telhome
 					-if @owner.telhome2.present?
 						.show-field
-							span.grey Telefone casa 2: 
+							span.grey
+								=t('new.phonehome') + '2'
 							span =@owner.telhome2	
 					.show-field
-						span.grey País:
+						span.grey
+							=Language.find(get_languageid(I18n.locale.to_s)).COUNTRY
 						span =@owner.country
 					.show-field
-						span.grey Código Postal:
+						span.grey 
+							=t('new.zipcode')
 						span =@owner.zipandcity		
 				.col-md-4
 					.show-field
-						span.grey Morada:
+						span.grey
+							=t('new.address')
 						span =@owner.street
 					.show-field
-						span.grey Telemóvel:
+						span.grey
+							=t('new.mobile')
 						span =@owner.mobile	
 					-if @owner.mobile2.present?
 						.show-field
-							span.grey Telemóvel 2:
+							span.grey
+								=t('new.mobile') + '2'
 							span =@owner.mobile2		
 					.show-field
-						span.grey Registado desde:
+						span.grey
+							=t('new.registersince')
 						span =@owner.birtday
 					.show-field
 						span.grey
-							=link_to 'Mudar Password >',''
+							=link_to Language.find(get_languageid(I18n.locale.to_s)).CHANGE_PASSWORD + '>',''
 				.col-md-2
-					= link_to 'Edit', edit_owner_path(@owner)			
+					= link_to Language.find(get_languageid(I18n.locale.to_s)).EDIT, edit_owner_path(@owner)			
 					
 =render "layouts/footer"				
 			

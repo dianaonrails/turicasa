@@ -50,13 +50,13 @@ html
 						
 						-if session[:owner_id]
 							li class="link-personal-area"
-								=link_to 'Área pessoal',owner_path(current_user)
+								=link_to t('backoffice.personaldata'),owner_path(current_user)
 							li class="btt-black logout"
 								= link_to "Logout", :owner_logout, method: :post
 						-elsif session[:client_id]
 
 							li class="link-personal-area"
-								=link_to 'Área pessoal',client_path(current_user)
+								=link_to t('backoffice.personaldata'),client_path(current_user)
 							li class="btt-black logout"
 								= link_to "Logout", :client_logout, method: :post		
 						-else

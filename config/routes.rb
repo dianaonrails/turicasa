@@ -33,7 +33,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :owner_sessions
+  resources :owner_sessions do
+    collection do
+      get 'entries'
+    end
+  end    
   resources :owners
   resources :password_resets
 

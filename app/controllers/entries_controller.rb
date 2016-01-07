@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
   helper :all
-  before_filter :save_login_state, :only => [:new, :create]
+  #before_filter :save_login_state, :only => [:new, :create]
   set_tab :entries
   def search
 
@@ -49,6 +49,7 @@ class EntriesController < ApplicationController
   # GET /entries/new
   def new
     @entry = Entry.new
+    
   end
 
   # GET /entries/1/edit
@@ -107,6 +108,14 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params[:entry]
+      params[:entry].permit(:id,:name,:continent,:country,:region,:sleeps,:minimunrental,:catering,:nobedroms,:nodoubles,:notwins,
+        :doublesofabeds,:singlesofabeds,:babybeds,:babyhighchairs,:nobathrooms,:noshowerrooms,:noguestwc,:iscity,:isbeach,
+        :iscountryside,:isrural,:isskiarea,:ismountains,:iskitchen,:iskitchinette,:isseparatedining,:iscooker,:isove,:ismicrowave,
+        :isrefrigerator,:isfreezer,:istoaster,:iscoffemachine,:isdishwater,:iswashmachine,:iskitchenware,:ispotspans,:isglassware,
+        :istowels,:iscentralheating,:isairconditioning,:isceilingfans,:isventilators,:iselectricalheaters,:isfireplace,:istelephone,
+        :isfax,:isinternetwificonnection,:isinternetwithcomputer,:isalarm,:istv,:iscablesatelitetv,:isradio,:issafe,:isstereo,:isdvd,
+        :iscdplayer,:issauna,:islakeview,:ismountainsview,:ispoolview,:isriverview,:isseaview,:isbalcony,:isgarden,:isterrace,:isbbq,
+        :isdeck,:isprivateswimmingpool,:isprivateswimmingpoolheated,:issharedswimmingpool,:issharedswimmingpoolheated,:ispoolshower,
+        :isjacuzzi,:istabletennis,:istenniscourt,:isprivateparking,:isgarage,:isgolf,:isgastronomy)
     end
 end

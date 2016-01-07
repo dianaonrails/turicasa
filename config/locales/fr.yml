@@ -29,8 +29,8 @@ fr:
     registersince: "Enregistrer depuis:"
     country: "Pays:"
     zipcode: "Code postal et ville:"
-    phonehome: "Téléphone de la maison:"
-    mobilephone: "téléphone"
+    phonehome: "Téléphone de la maison "
+    mobilephone: "téléphone "
     language: "Langue préférée:"
     activities: "Activités"
     distance: "Distance "
@@ -44,7 +44,11 @@ fr:
     booknow: "réservez maintenant"
     description: "La description"
     nodescription: "Pas de description"
-    facilities: "Installations"          
+    facilities: "Installations"
+  backoffice:
+    personaldata: "Information personnelle"
+    bookings: "Réservations"
+    proprieties: "Convenances"            
   activerecord:
     errors:
       messages:

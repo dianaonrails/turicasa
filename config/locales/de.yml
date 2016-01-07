@@ -45,7 +45,11 @@ de:
     nodescription: "Keine Beschreibung"
     facilities: "Anlagen"
     activities: "Aktivitäten" 
-    distance: "Entfernung"          
+    distance: "Entfernung"
+  backoffice:
+    personaldata: "persönliche Information"
+    bookings: "Buchungen"
+    proprieties: "Anstands"            
   activerecord:
     errors:
       messages:

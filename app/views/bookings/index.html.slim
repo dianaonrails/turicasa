@@ -3,22 +3,30 @@
     .col-md-12
       -if session[:client_id]
         = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
-              =tab.client 'Dados Pessoais', client_path(session[:client_id])
-              =tab.booking 'Reservas', bookings_path
+              =tab.client t('backoffice.personaldata'), client_path(session[:client_id])
+              =tab.booking t('backoffice.bookings'), bookings_path
         .col-md-12.border-style
-            =link_to 'Adicionar',new_booking_path
+            =link_to Language.find(get_languageid(I18n.locale.to_s)).ADD_NEW,new_booking_path
             .col-md-12
               table class="table table-striped"
                 tr
-                  th Dono
+                  th 
+                    =Language.find(get_languageid(I18n.locale.to_s)).OWNER
                   th Agente
-                  th Propriedade
-                  th Pessoas
-                  th Chegada
-                  th Saída
-                  th Dias
-                  th Valor
-                  th Estado
+                  th
+                    =Language.find(get_languageid(I18n.locale.to_s)).YOURPROPERTIES
+                  th
+                    =t('entries.people')
+                  th
+                    =Language.find(get_languageid(I18n.locale.to_s)).ARRIVAL
+                  th LEAVE
+                    
+                  th
+                    =Language.find(get_languageid(I18n.locale.to_s)).DAYS
+                  th
+                    =Language.find(get_languageid(I18n.locale.to_s)).AMOUNT
+                  th STATE 
+
                   th
                 -@bookings.each do |booking|  
                   tr
@@ -36,6 +44,6 @@
                     td =booking.numberdays
                     td =booking.totalvalue
                     td =booking.status
-                    td =link_to 'Ver mais /Editar'
+                    td =link_to t('buttons.seemore') +'/' + Language.find(get_languageid(I18n.locale.to_s)).EDIT, edit_booking_path(booking)
 
 =render 'layouts/footer'                    

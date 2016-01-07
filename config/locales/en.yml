@@ -49,8 +49,8 @@ en:
     address2: "Address 2:"
     country: "Country"
     zipcode: 'Zip code & city:'
-    phonehome: "Phone of home:"
-    mobilephone: "Mobile phone:"
+    phonehome: "Phone of home "
+    mobilephone: "Mobile phone "
     language: "Preferred language:"
   entries:
     room: "Rooms"
@@ -64,7 +64,11 @@ en:
     nodescription: "no description"
     facilities: "Facilities"
     activities: "Activities"
-    distance: "Distances"     
+    distance: "Distances"
+  backoffice:
+    personaldata: "Personal data"
+    bookings: "Bookings"
+    proprieties: "Proprieties"      
   activerecord:
     errors:
       messages:

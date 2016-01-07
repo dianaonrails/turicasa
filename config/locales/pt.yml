@@ -29,8 +29,8 @@ pt:
     registersince: "Registado desde:"
     country: "País"
     zipcode: 'Código postal e cidade:'
-    phonehome: "Telefone de casa:"
-    mobilephone: "Telemóvel:"
+    phonehome: "Telefone de casa "
+    mobilephone: "Telemóvel "
     language: "Linguagem preferencial:" 
   entries:
     room: "Quartos"
@@ -45,6 +45,10 @@ pt:
     facilities: "Comodidades"
     activities: "Atividades"
     distance: "Distância"
+  backoffice:
+    personaldata: "Dados pessoais"
+    bookings: "Reservas"
+    proprieties: "Propriedades"
   activerecord:
     errors:
       messages:
