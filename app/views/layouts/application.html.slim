@@ -10,13 +10,14 @@ html
 			.col-md-4.flags
 				ul
 					li.flag-item
-						=image_tag("portuguese-flag.png")
+						= link_to image_tag("portuguese-flag.png"), change_locale_path(:pt)
+					
 					li.flag-item
-						=image_tag('british-flag.png')
+						=link_to image_tag('british-flag.png'), change_locale_path(:en)
 					li.flag-item
-						=image_tag('german-flag.png')
+						=link_to image_tag('german-flag.png'), change_locale_path(:de)
 					li.flag-item
-						=image_tag('french-flag.png')
+						=link_to image_tag('french-flag.png'), change_locale_path(:fr)
 		.row.navbar-row
 			
 			div class="container"
@@ -28,24 +29,24 @@ html
 					ul class="nav navbar-nav"
 						-if action?('home')
 							li class='link-active'
-								=link_to 'Home','/'
+								=link_to Language.find(get_languageid(I18n.locale.to_s)).HOME,'/'
 						-else 
 							li
-								=link_to 'Home','/'		
+								=link_to Language.find(get_languageid(I18n.locale.to_s)).HOME,'/'		
 						-if action?('about')			
 							li class="link-active"
-								=link_to 'Sobre nós','/about'
+								=link_to t('menu.about'),'/about'
 						-else
 							li 
-								=link_to 'Sobre nós','/about'			
+								=link_to t('menu.about'),'/about'			
 						li 
 							=link_to 'Faq',''
 						-if action?('contacts')
 							li class="link-active"
-								=link_to 'Contactos','/contacts'
+								=link_to t('menu.contacts'),'/contacts'
 						-else
 							li 
-								=link_to 'Contactos','/contacts'
+								=link_to t('menu.contacts'),'/contacts'
 						
 						-if session[:owner_id]
 							li class="link-personal-area"
@@ -65,9 +66,9 @@ html
 									
 									ul class="dropdown-menu"
 										li 
-											=link_to 'Client',:client_login
+											=link_to t('menu.client'),:client_login
 										li 
-											=link_to 'Owner',:owner_login
+											=link_to t('menu.owner'),:owner_login
 							
 		= yield
 

@@ -23,7 +23,8 @@
 				.icon
 					=image_tag('pin56.png')
 				.col-md-4
-					=select_tag "region_id", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: "Escolha a região",class:"form-control"
+					
+					=select_tag "region_id", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: t('search.region'),class:"form-control"
 				.icon
 					=image_tag('calendar-icons.png',width:'100%')
 				.col-md-2
@@ -35,13 +36,14 @@
 				.icon
 					=image_tag('multiple25.png',width:'100%')
 				.col-md-2
-					=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
+					=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:t('search.people'), class:"form-control"
 			.col-md-2	
 				=submit_tag "Submit", class:'btt-black'
 .container
 	.row.properties-home
 		.col-md-6.oportunities.border
-			h1.txt-center Oportunidades
+			h1.txt-center 
+				= t('home.opportunities')
 			hr
 			.col-md-12.no-padding
 				
@@ -64,10 +66,11 @@
 								' a
 								=entry.date2.strftime('%d %B %Y') if !entry.date1.blank?
 						.col-md-4.col-md-offset-3.btt-see-more
-							=link_to 'Ver mais', entry_path(@entry.id)
+							=link_to t('buttons.seemore'), entry_path(@entry.id)
 							 
 		.col-md-6.news
-			h1.txt-center Novidades
+			h1.txt-center 
+				=t('home.news')
 			hr
 			.col-md-12.property-item
 				- @recent_entries.each do |entry|
@@ -81,5 +84,5 @@
 							'Datas:
 							
 					.col-md-4.col-md-offset-3.btt-see-more
-						=link_to 'Ver mais',entry_path(entry.id)	
+						=link_to t('buttons.seemore'),entry_path(entry.id)	
 =render 'layouts/footer'			

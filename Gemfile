@@ -36,6 +36,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'Bootstrap-Image-Gallery-rails'
 gem 'bootstrap-addons-rails'
 
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+
 
 #Authentication
 gem 'sorcery'

@@ -28,7 +28,7 @@ class ClientsController < ApplicationController
   # POST /owners
   # POST /owners.json
   def create
-    @client = Client.new(owner_params)
+    @client = Client.new(client_params)
 
     respond_to do |format|
       if @client.save
@@ -73,7 +73,7 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params[:client].permit(:id,:email,:password,:password_confirmation,:firstname,:lastname,:birtday,:street,:street2,:country,:zipandcity,
-        :telhome,:telhome2,:mobile,:mobile2,:photo,:preferedlanguage)
+      params[:client].permit(:id,:email,:password,:password_confirmation,:firstname,:lastname,:datebirth,:street,:street2,:country,:cityzipp,
+        :telhome,:mobile,:telwork,:photo,:preferededlanguage)
     end
 end

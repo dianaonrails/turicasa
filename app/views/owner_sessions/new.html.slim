@@ -11,10 +11,11 @@
 						=label_tag 'Password'
 						=text_field_tag :password,nil,type:'password',class:"form-control",placeholder:"Your password"
 					.btt-enter	
-						=submit_tag "Entrar", class:'btt-black'	
+						=submit_tag t('login.enter'), class:'btt-black'	
 					.btt-regist
-						=link_to 'Registe-se',new_owner_path
+						=link_to t('login.register'),new_owner_path
 						br
 			.col-md-4
-				h5 Esqueceu-se da sua password?
+				h5 
+					=t('login.forgetpass')
 				= render 'forgot_password_form' 

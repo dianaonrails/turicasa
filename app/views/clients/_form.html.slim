@@ -1,9 +1,9 @@
-= form_for @owner do |f|
-  - if @owner.errors.any?
+= form_for @client do |f|
+  - if @client.errors.any?
     #error_explanation
       h2 = "#{pluralize(@owner.errors.count, "error")} prohibited this owner from being saved:"
       ul
-        - @owner.errors.full_messages.each do |message|
+        - @client.errors.full_messages.each do |message|
           li = message
   .form-field
     .lbl-field
@@ -38,7 +38,7 @@
     .lbl-field
     	=label_tag t('new.registersince')
     .txt-field
-    	=f.text_field :birtday, class:"form-control datepicker", required: true
+    	=f.text_field :datebirth, class:"form-control datepicker", required: true
     	'&nbsp;
     	span *  	
   .form-field
@@ -64,7 +64,7 @@
     .lbl-field
     	=label_tag t('new.zipcode')
     .txt-field
-    	=f.text_field :zipandcity, class:"form-control" , required: true
+    	=f.text_field :cityzipp, class:"form-control" , required: true
     	'&nbsp;
     	span *
   .form-field
@@ -74,23 +74,19 @@
     	=f.text_field :telhome, class:"form-control", required: true
     	'&nbsp;
     	span *
-  .form-field
-    .lbl-field
-    	=label_tag t('new.phonehome') + '2'
-    .txt-field
-    	=f.text_field :telhome2, class:"form-control"
+  
   .form-field
     .lbl-field
     	=label_tag t('new.mobilephone')
     .txt-field
-    	=f.text_field :mobile, class:"form-control", required: true
+    	=f.text_field :mobille, class:"form-control", required: true
     	'&nbsp;
     	span *
   .form-field
     .lbl-field
-    	=label_tag t('new.mobilephone') + '2'
+    	=label_tag 'tel work'
     .txt-field
-    	=f.text_field :mobile2, class:"form-control"   	  	   	  	 
+    	=f.text_field :telwork, class:"form-control"   	  	   	  	 
   
   .form-field
     .lbl-field
@@ -101,7 +97,7 @@
     .lbl-field
     	=label_tag t('new.language')
     .txt-field
-    	=f.collection_select(:preferedlanguage, Language.all, :id,:name) 	
+    	=f.collection_select(:preferededlanguage, Language.where(active: 1), :id,:name) 	
 
   .actions.btt-black
   	= f.submit t('login.register')

@@ -1,7 +1,8 @@
 .container.about-us.public-container
 	.row
 		.col-md-12
-			h1.title Sobre nós
+			h1.title 
+				=t('menu.about')
 			hr
 			
 			.col-md-6.text	
@@ -11,6 +12,5 @@
 			.col-md-6.image-about1
 				=image_tag('about1.jpg')
 			.col-md-12
-				h2 O que fazemos.
-				p texto...
+				
 =render 'layouts/footer'				
