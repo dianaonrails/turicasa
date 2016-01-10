@@ -10,20 +10,31 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @regions = Region.all
-    if session[:client_id]
-      @entries = Entry.active
-    elsif session[:owner_id]
-      @entries = Entry.where(owner: session[:owner_id])
-    else  
-      @entries = Entry.active.approved
-      filtering_params(params).each do |key, value|
-        @entries = @entries.public_send(key, value) if value.present?
-      end
-      #@entries = @entries.region(params[:region_id]) if params[:region_id].present?
-      #@entries = @entries.region(params[:region_id]).guests(params[:guests]) if params[:region_id].present? && params[:guests].present?
-      
+    if I18n.locale.to_s == "pt"
+      @regions = Region.where(language: 2)
+    elsif I18n.locale.to_s == "en"
+      @regions =  Region.where(language: 1)
+    elsif I18n.locale.to_s == "de"
+      @regions =  Region.where(language: 3)
+    else
+      @regions =  Region.where(language: 4) 
+    end
+    
+    @entries = Entry.where(nil)
+    filtering_params(params).each do |key, value|
+      puts key
+      puts value
+      @entries = @entries.public_send(key, value) if value.present?
+    end
+
+    if @entries.nil?
+      flash.now[:error] = "No results"
+      render :index
+    else
+      @entries = @entries.active.approved
     end  
+      #@entries = @entries.region(params[:region_id]) if params[:region_id].present?
+      #@entries = @entries.region(params[:region_id]).guests(params[:guests]) if params[:region_id].present? && params[:guests].present?  
     
   end
 
@@ -103,7 +114,7 @@ class EntriesController < ApplicationController
     end
 
     def filtering_params(params)
-      params.slice(:location, :guests, :check_in,:check_out)
+      params.slice(:region, :guests, :check_in,:check_out)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
