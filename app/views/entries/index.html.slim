@@ -4,7 +4,7 @@
       .col-md-12
         =image_tag('location-red.png')
         .select-region
-          =select_tag "region_id", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: t('search.region'),class:"form-control"
+          =select_tag "region", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: t('search.region'),class:"form-control"
       .col-md-12.break-space 
         .icon-calendar
           =image_tag('calendar-icons-red.png',width:'100%')
@@ -30,11 +30,16 @@
         span.title Results
         hr
       .col-md-12
-        -if !@entries.nil?
-          - @entries.each do |entry|
+
+        -if @entries.blank?
+          -flash.each do |name, msg|
+            = content_tag :div, msg, class: "alert alert-info"
+        -else 
+          -@entries.each do |entry|
             .row.entry
               .col-md-4.image-display
-                =image_tag(entry.fotoprincipal)
+                =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+
               .col-md-4
                 h1
                   =entry.name
