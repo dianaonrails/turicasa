@@ -5,17 +5,95 @@
       ul
         - @booking.errors.full_messages.each do |message|
           li = message
+  .col-md-12
+    = f.label Language.find(get_languageid(I18n.locale.to_s)).NAME_ENTRIE
+    '&nbsp;
+    = f.collection_select(:entrie, Entry.all,:id,:name,{selected: @entry.id})
+  
+  .col-md-6
+    =f.label Language.find(get_languageid(I18n.locale.to_s)).ARRIVAL
+    '&nbsp;
+    =f.text_field :arrival , class:'datepicker'
+  .col-md-6
+    =f.label Language.find(get_languageid(I18n.locale.to_s)).LATESTDEPARTURETIME
+    '&nbsp;
+    =f.text_field :departure , class:'datepicker'
 
-  .show-field
-    = f.label 'Propriedade'
-    = f.collection_select(:entrie, Entry.all,:id,:name)
-  .show-field
-    =f.label 'Chegada'
-    =f.text_field :departure , class:'date-picker'
-  
-    =f.label 'Partida'
-    =f.text_field :arrival , class:'date-picker'    
-  
+  .col-md-12.space-top 
+    .panel.panel-default
+        .panel-heading  
+          =Language.find(get_languageid(I18n.locale.to_s)).PERPERSONBOOKING
+        .panel-body  
+          .col-md-4
+            =f.label t('search.people')
+            '&nbsp;
+            =f.text_field :numberofpeople
+  .col-md-12.space-top 
+    .panel.panel-default
+        .panel-heading  
+          =Language.find(get_languageid(I18n.locale.to_s)).PAYMENTINFO
+        .panel-body
+          .col-md-12
+            -@caterings.each do |catering|
+              .col-md-4
+                label 
+                  =Language.find(get_languageid(I18n.locale.to_s)).CATERING
+                '&nbsp;
+                span
+                  =catering.option
+          .col-md-4
+            label Total Price
+            '&nbsp;
+            span €
+          .col-md-4
+            label 
+              =Language.find(get_languageid(I18n.locale.to_s)).PAY
+            '&nbsp;
+            span   
+              =@entry.daystopayall
+              'days     
+          .col-md-4
+            label
+              =Language.find(get_languageid(I18n.locale.to_s)).DEPOSITCOLECTED
+            '&nbsp; 
+            span
+              =@entry.deposit
+              '€
+          .col-md-4
+            label
+              =Language.find(get_languageid(I18n.locale.to_s)).LIMITPAYDEPOSIT
+            '&nbsp; 
+            span
+              =@entry.daystopaydeposit 
+              'days
+          .col-md-4
+            label
+              =Language.find(get_languageid(I18n.locale.to_s)).PREFEREDPAYMENT
+            '&nbsp; 
+            span
+              =OptionsPayment.where(optionnumber: Owner.find(@entry.owner).preferedpayment).first.option
+                   
+
+  .col-md-12.space-top 
+    .panel.panel-default
+        .panel-heading  
+          =Language.find(get_languageid(I18n.locale.to_s)).EXTRA_INFORMATION
+        .panel-body  
+          .col-md-6
+            label
+              =Language.find(get_languageid(I18n.locale.to_s)).EARLIESTARRIVALTIME 
+            '&nbsp;  
+            span
+              =@entry.earliestarrivaltime.strftime('%I:%M%p')       
+
+          .col-md-6
+            label
+              =Language.find(get_languageid(I18n.locale.to_s)).LATESTDEPARTURETIME 
+            '&nbsp;  
+            span
+              =@entry.latestdeparturetime.strftime('%I:%M%p')       
+
+
   .actions.btt-black = f.submit
 
   =render 'layouts/footer'

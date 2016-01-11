@@ -22,8 +22,6 @@ class EntriesController < ApplicationController
     
     @entries = Entry.where(nil)
     filtering_params(params).each do |key, value|
-      puts key
-      puts value
       @entries = @entries.public_send(key, value) if value.present?
     end
 

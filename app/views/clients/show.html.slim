@@ -12,7 +12,7 @@
 						=@client.firstname
 						'
 						=@client.lastname
-					.col-md-8
+					.col-md-4
 						.show-field
 							span.grey Email:
 							span =@client.email
@@ -42,6 +42,8 @@
 							.show-field
 								span.grey 
 									=t('new.address') + '2'
-								span =@client.street2	
+								span =@client.street2
+					.col-md-3
+						= link_to Language.find(get_languageid(I18n.locale.to_s)).EDIT, edit_client_path(@client)				
 						
 =render 'layouts/footer'									

@@ -5,6 +5,7 @@ class OwnerSessionsController < ApplicationController
 
   def entries
     if session[:owner_id]
+      @owner = Owner.find(session[:owner_id])
       @entries = Entry.where(owner: session[:owner_id])
     end  
   end  

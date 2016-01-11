@@ -82,7 +82,8 @@
 
 				 	
 				hr
-				=form_tag new_booking_path, method: :push
+				=form_tag new_booking_path, method: :get
+					=hidden_field_tag "entry_id", @entry.id
 					.icon-calendar
 						=image_tag('calendar-icons-red.png',width:'100%')
 					.col-md-5
@@ -97,13 +98,17 @@
 						.col-md-5
 							=select_tag :guests, options_for_select([["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["+6","6"]]),include_blank:"Nº pessoas", class:"form-control"
 					.col-md-12.btt-book
-						=submit_tag t("entries.booknow"), class:'btt-black'
+						-if session[:client_id]
+							=submit_tag t("entries.booknow"), class:'btt-black'
+						-else
+							=link_to 'Register to book', new_client_session_path
+
 			hr.line-bottom
 		.col-md-12
 			h1.sub-title.black.bold 
 				=t('entries.description')
-			-if Description.exists?(entrie: @entry.id,language: 2)
-				p.description =raw Description.where(entrie: @entry.id, language: 2).first.despcription
+			-if Description.exists?(entrie: @entry.id,language: get_languageid(I18n.locale.to_s))
+				p.description =raw Description.where(entrie: @entry.id, language: get_languageid(I18n.locale.to_s)).first.despcription
 			-else
 				span 
 					=t('entries.nodescription')

@@ -18,6 +18,10 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
+    if params[:entry_id].present?
+      @entry = Entry.find(params[:entry_id]) 
+      @caterings = OptionsCatering.where(optionnumber: @entry.catering, language: get_languageid(I18n.locale.to_s)) 
+    end  
     @booking = Booking.new
   end
 

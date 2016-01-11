@@ -1,4 +1,7 @@
 .container.public-container
-	h1 
+	
+	.col-md-8.space-bottom
+      p class="text-warning"
+      	=Language.find(get_languageid(I18n.locale.to_s)).COMPULSORY_FIELDS
 
 	== render 'form'

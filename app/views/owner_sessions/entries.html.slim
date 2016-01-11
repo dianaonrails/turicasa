@@ -3,9 +3,9 @@
     .col-md-12
       h1
         =Language.find(get_languageid(I18n.locale.to_s)).WELCOME
-        = current_user.firstname
+        = @owner.firstname
         ' 
-        = current_user.lastname
+        = @owner.lastname
     
     .col-md-12
         = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
