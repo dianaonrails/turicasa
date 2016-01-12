@@ -27,6 +27,12 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+   
+    if Entry.exists?(@booking.entrie)
+      @entry = Entry.find(@booking.entrie)
+    else
+      @entry = nil 
+    end  
   end
 
   # POST /bookings

@@ -3,6 +3,7 @@ class OwnerSessionsController < ApplicationController
   #before_filter :authenticate_owner
   before_filter :save_owner_login_state, :only => [:new,:create]
 
+  set_tab :owner_entries
   def entries
     if session[:owner_id]
       @owner = Owner.find(session[:owner_id])

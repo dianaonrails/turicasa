@@ -46,7 +46,7 @@ fr:
     nodescription: "Pas de description"
     facilities: "Installations"
   backoffice:
-    personaldata: "Information personnelle"
+    personaldata: "Info personnelle"
     bookings: "Réservations"
     proprieties: "Convenances"            
   activerecord:

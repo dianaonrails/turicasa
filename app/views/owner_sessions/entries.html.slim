@@ -2,15 +2,12 @@
   .row
     .col-md-12
       h1
-        =Language.find(get_languageid(I18n.locale.to_s)).WELCOME
-        = @owner.firstname
-        ' 
-        = @owner.lastname
+        
     
     .col-md-12
         = tabs_tag :open_tabs => { :id => "tabs", :class => "nav nav-tabs" } do |tab|
             =tab.owner t('backoffice.personaldata'), owner_path(session[:owner_id]) 
-            =tab.entries t('backoffice.proprieties'), entries_owner_sessions_path
+            =tab.owner_entries t('backoffice.proprieties'), entries_owner_sessions_path
             
         .col-md-12.border-style
           =link_to Language.find(get_languageid(I18n.locale.to_s)).ADD_NEW,new_entry_path

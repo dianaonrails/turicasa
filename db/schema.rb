@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223203009) do
+ActiveRecord::Schema.define(version: 20160112012518) do
 
   create_table "access", force: :cascade do |t|
     t.integer "property", limit: 4
@@ -117,6 +117,20 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.string  "lastname",  limit: 100
     t.integer "age",       limit: 4
     t.integer "sex",       limit: 4
+  end
+
+  create_table "bootsy_image_galleries", force: :cascade do |t|
+    t.integer  "bootsy_resource_id",   limit: 4
+    t.string   "bootsy_resource_type", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: :cascade do |t|
+    t.string   "image_file",       limit: 255
+    t.integer  "image_gallery_id", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "caixas", force: :cascade do |t|
@@ -329,12 +343,14 @@ ActiveRecord::Schema.define(version: 20151223203009) do
   add_index "countries", ["language"], name: "language", using: :btree
   add_index "countries", ["optionnumber"], name: "optionnumber", using: :btree
 
-  create_table "descriptions", id: false, force: :cascade do |t|
-    t.integer "id",           limit: 4,          null: false
+  create_table "descriptions", force: :cascade do |t|
     t.integer "entrie",       limit: 4
     t.integer "language",     limit: 4
     t.text    "despcription", limit: 4294967295
   end
+
+  add_index "descriptions", ["entrie"], name: "entrie", using: :btree
+  add_index "descriptions", ["language"], name: "language", using: :btree
 
   create_table "emailsbookings", id: false, force: :cascade do |t|
     t.integer "id",                         limit: 4,     null: false
@@ -595,11 +611,12 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.date    "date2"
   end
 
-  create_table "entries_reviews", id: false, force: :cascade do |t|
-    t.integer "id",     limit: 4,     null: false
+  create_table "entries_reviews", force: :cascade do |t|
     t.integer "entrie", limit: 4
     t.text    "review", limit: 65535
   end
+
+  add_index "entries_reviews", ["entrie"], name: "entrie", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string  "prefix",                      limit: 4
@@ -1204,7 +1221,7 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.text    "location", limit: 4294967295
   end
 
-  create_table "options_catering", id: false, force: :cascade do |t|
+  create_table "options_caterings", id: false, force: :cascade do |t|
     t.integer "id",           limit: 4,  null: false
     t.integer "optionnumber", limit: 4
     t.integer "language",     limit: 4
@@ -1253,7 +1270,7 @@ ActiveRecord::Schema.define(version: 20151223203009) do
     t.string  "option",       limit: 40
   end
 
-  create_table "options_type", id: false, force: :cascade do |t|
+  create_table "options_types", id: false, force: :cascade do |t|
     t.integer "id",           limit: 4,  null: false
     t.integer "optionnumber", limit: 4
     t.integer "language",     limit: 4

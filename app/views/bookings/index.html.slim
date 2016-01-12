@@ -6,7 +6,7 @@
               =tab.client t('backoffice.personaldata'), client_path(session[:client_id])
               =tab.booking t('backoffice.bookings'), bookings_path
         .col-md-12.border-style
-            =link_to Language.find(get_languageid(I18n.locale.to_s)).ADD_NEW,new_booking_path
+            
             .col-md-12
               table class="table table-striped"
                 tr

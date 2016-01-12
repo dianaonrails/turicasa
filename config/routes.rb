@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
   
   resources :bookings
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
 
   resources :entries_reviews
 
+  get 'get_cities' => 'entries#get_cities'
   resources :entries do
     collection do
       get 'search'

@@ -6,52 +6,69 @@
 	        - @entry.errors.full_messages.each do |message|
 	          li = message
 
- 	.col-md-12
- 		.show-field
-	 		=label_tag Language.find(get_languageid(I18n.locale.to_s)).NAME_ENTRIE
-	 		=f.text_field :name
-
+ 	
+	.col-md-2.btt-black
+		=link_to 'Add discount',''
+	.col-md-12.show-field
+		=label_tag Language.find(get_languageid(I18n.locale.to_s)).NAME_ENTRIE
+		'&nbsp;
+		=f.text_field :name, size: "100%"
+	.col-md-12
 	 	.panel.panel-default
 	 		.panel-heading	
 	 			=Language.find(get_languageid(I18n.locale.to_s)).PRICES_AV_BO
 	 		.panel-body
 		 		
-		 		.col-md-12
-		 			=f.fields_for :prices, Price.new do |prices_fields|
-		 				.col-md-3
-			 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).FROM
-				 			=prices_fields.text_field :from, class:'datepicker'
-			 			.col-md-3
-				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).TO
-				 			=prices_fields.text_field :to, class:'datepicker'
-			 			.col-md-3
-				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).PRICE
-				 			=prices_fields.text_field :price
-			 			.col-md-3
-				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).DESCRIPTION
-				 			=prices_fields.text_field :description
+		 		
+	 			=f.fields_for :prices, Price.new do |prices_fields|
+	 				.col-md-3
+		 				=label_tag Language.find(get_languageid(I18n.locale.to_s)).FROM
+			 			=prices_fields.text_field :from, class:'datepicker'
+		 			.col-md-3
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).TO
+			 			=prices_fields.text_field :to, class:'datepicker'
+		 			.col-md-3
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).PRICE
+			 			=prices_fields.text_field :price
+
+		 			.col-md-8.space-top
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).DESCRIPTION
+			 			br
+			 			=prices_fields.text_area :description, cols:"40",rows:"3"
+			 	
 
 		.panel.panel-default
 	 		.panel-heading 
 	 			=Language.find(get_languageid(I18n.locale.to_s)).TECH_INFO
 	 		.panel-body
-	 			.col-md-4
-	 				.field
-			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).COUNTRY
-			 			=f.collection_select(:country,Country.where(language: get_languageid(I18n.locale.to_s)),:id,:country, required:true, class:"form-control")
-			 		.field
-			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).CITY
-			 			=f.collection_select(:city,City.where(language: get_languageid(I18n.locale.to_s)),:id,:city, required:true, class:"form-control")
-			 	.col-md-3		
-			 		
-		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).NUMBER_SLEEPS
-		 			=f.text_field :sleeps
-			 	.col-md-3
-		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).MINIMUN_RENTAL
-		 			=f.text_field :minimunrental
-			 	.col-md-3
+	 			.col-md-12.no-padding
+		 			.col-md-3
+		 				
+				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).COUNTRY
+				 			br
+				 			=f.collection_select(:country,Country.where(language: get_languageid(I18n.locale.to_s)),:id,:country, required:true, class:"form-control")
+				 	.col-md-3	
+				 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).CITY
+				 			br
+				 			=f.collection_select(:city,City.where(language: get_languageid(I18n.locale.to_s)),:id,:city, required:true, class:"form-control")
+				 	.col-md-3		
+				 		
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).NUMBER_SLEEPS
+			 			br
+			 			=f.text_field :sleeps
+				 	.col-md-3
+			 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).MINIMUN_RENTAL
+			 			br
+			 			=f.text_field :minimunrental
+			 	.col-md-2.space-top
 		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).CATERING
-		 			=f.collection_select(:catering,OptionsCatering.where(language: get_languageid(I18n.locale.to_s)),:id,:option, required:true)			
+		 			br
+		 			=f.collection_select(:catering,OptionsCatering.where(language: get_languageid(I18n.locale.to_s)),:id,:option, required:true)	
+		 		.col-md-10.space-top
+		 			=label_tag Language.find(get_languageid(I18n.locale.to_s)).DESCRIPTION
+		 			br
+		 			=f.fields_for :description, Description.new do |d|
+		 				=d.bootsy_area :despcription, cols:"95", rows:"5"	, :class => 'ckeditor'		
 
 	 	.panel.panel-default
 	 		.panel-heading Informação adicional

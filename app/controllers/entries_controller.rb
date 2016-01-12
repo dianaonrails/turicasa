@@ -7,6 +7,15 @@ class EntriesController < ApplicationController
 
   end 
 
+  def get_cities
+    if params[:country].present?
+      @cities = City.where(language: get_languageid(I18n.locale.to_s), cou: params[:country])
+    else
+      @cities = City.where(nil)
+    end  
+    render json: @cities
+  end  
+
   # GET /entries
   # GET /entries.json
   def index
@@ -34,6 +43,9 @@ class EntriesController < ApplicationController
       #@entries = @entries.region(params[:region_id]) if params[:region_id].present?
       #@entries = @entries.region(params[:region_id]).guests(params[:guests]) if params[:region_id].present? && params[:guests].present?  
     
+    @cities = City.where(language: get_languageid(I18n.locale.to_s))
+      
+    @countries = Country.where(language: get_languageid(I18n.locale.to_s))
   end
 
 
@@ -49,7 +61,9 @@ class EntriesController < ApplicationController
     else
       @regions =  Region.where(language: 4) 
     end
+
     @entry = Entry.find(params[:id])
+    @owner = Owner.find(@entry.owner)
     @entries_review = EntriesReview.new
   end
 
@@ -63,6 +77,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
+    @owner = Owner.find(@entry.owner)
   end
 
   # POST /entries
@@ -112,7 +127,7 @@ class EntriesController < ApplicationController
     end
 
     def filtering_params(params)
-      params.slice(:region, :guests, :check_in,:check_out)
+      params.slice(:region, :guests, :check_in,:check_out,:country,:city)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

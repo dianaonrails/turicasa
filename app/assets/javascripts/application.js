@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootsy
 //= require react
 //= require react_ujs
 //= require components
@@ -24,12 +25,39 @@
 //= require blueimp-gallery-youtube
 //= require jquery.blueimp-gallery
 //= require bootstrap-image-gallery
+
 //= require_tree .
+
+function chooseCountry(country) {
+
+	var country_id = $('#country').val();
+	
+	$.ajax({
+        type: 'GET',
+        url: 'get_cities',
+        data: {'country': country_id},
+        success: function(data){
+        	$('#city').empty();
+        	$('#city').append("<option value=>Choose the city</option>");
+            $.each(JSON.parse(data), function(index, el) {
+       			//alert(el);
+				$('#city').append("<option value=" + el.id + ">" + el.city +"</option>");
+        	});
+        	//alert( "Load was performed." );    
+        },
+        dataType: 'html'
+    });
+   
+};
+
+
 
 $(document).ready(function () {
 
 	$('#myCarousel').carousel();
 
     $('.datepicker').datepicker();
+
+    
  	
 });

@@ -1,10 +1,14 @@
 .row.background-search
-  .col-md-4.book-container.index-search
+  .col-md-6.book-container.index-search
     =form_tag entries_path, :method => 'get', class:"form-group" do
-      .col-md-12
+      .col-md-6
         =image_tag('location-red.png')
         .select-region
-          =select_tag "region", options_for_select(@regions.collect{ |r| [r.region, r.id] }),include_blank: t('search.region'),class:"form-control"
+          =select_tag "country", options_for_select(@countries.collect{ |r| [r.country, r.optionnumber] }),include_blank: 'Choose the country',class:"form-control", onchange:"chooseCountry(this);"
+      .col-md-6
+        =image_tag('location-red.png')
+        .select-region
+          =select_tag "city", options_for_select(@cities.collect{ |r| [r.city, r.id] }),include_blank: 'Choose the city',class:"form-control"    
       .col-md-12.break-space 
         .icon-calendar
           =image_tag('calendar-icons-red.png',width:'100%')
