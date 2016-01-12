@@ -34,18 +34,21 @@ class EntriesController < ApplicationController
       @entries = @entries.public_send(key, value) if value.present?
     end
 
-    if @entries.nil?
+    @cities = City.where(language: get_languageid(I18n.locale.to_s))
+      
+    @countries = Country.where(language: get_languageid(I18n.locale.to_s))
+
+    puts @entries
+    if @entries.first.blank?
       flash.now[:error] = "No results"
       render :index
     else
-      @entries = @entries.active.approved
+      @entries = @entries.where(active: true, approved: true)
     end  
       #@entries = @entries.region(params[:region_id]) if params[:region_id].present?
       #@entries = @entries.region(params[:region_id]).guests(params[:guests]) if params[:region_id].present? && params[:guests].present?  
     
-    @cities = City.where(language: get_languageid(I18n.locale.to_s))
-      
-    @countries = Country.where(language: get_languageid(I18n.locale.to_s))
+    
   end
 
 

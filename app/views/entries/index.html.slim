@@ -31,6 +31,9 @@
       .col-md-12
 
         span.title Results
+        span
+          ' 
+          =@entries.size
         hr
       .col-md-12
         -if @entries.blank?
@@ -40,7 +43,8 @@
           -@entries.each do |entry|
             .row.entry
               .col-md-4.image-display
-                =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+                -if !entry.fotoprincipal.nil?
+                  =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
               .col-md-4
                 h1
                   =entry.name
@@ -49,7 +53,7 @@
                   =entry.ref
                 .reviews
                   h4.grey
-                    -if entry.ranking > 0
+                    -if !entry.ranking.nil? && entry.ranking > 0
                       'Reviews
                       -entry.ranking.times do
                         .star
