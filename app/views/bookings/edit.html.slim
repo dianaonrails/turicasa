@@ -1,6 +1,10 @@
 .container.public-container
-	h1 Editing booking
-
+	.col-md-12.no-padding
+		.col-md-10.space-bottom
+			h1 Editing booking
+		.small-button.btt-black
+	      =link_to Language.find(get_languageid(I18n.locale.to_s)).CANCEL,''
+	hr
 	== render 'form'
 
 	= link_to 'Show', @booking

@@ -28,6 +28,7 @@
           =submit_tag Language.find(get_languageid(I18n.locale.to_s)).SEARCH, class:'btt-black'
 .container.search-container
   .row
+
       .col-md-12
 
         span.title Results
@@ -36,6 +37,7 @@
           =@entries.size
         hr
       .col-md-12
+
         -if @entries.blank?
           -flash.each do |name, msg|
             = content_tag :div, msg, class: "alert alert-info"
@@ -43,8 +45,10 @@
           -@entries.each do |entry|
             .row.entry
               .col-md-4.image-display
+
                 -if !entry.fotoprincipal.nil?
-                  =image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
+                  =image_tag("http://www.cdpreisen.de/admin/upload/" + entry.fotoprincipal.to_s)
+
               .col-md-4
                 h1
                   =entry.name

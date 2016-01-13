@@ -81,6 +81,11 @@ body{
 	margin-bottom:3%;
 }
 
+.small-button{
+	width:10%;
+	float:right;
+}
+
 
 .field{
 	padding:5px;
@@ -176,7 +181,7 @@ body{
 	}
 
 	.nav.navbar-nav{
-		width: 70%;
+		width: 65%;
 		float: right;
 		margin-top: 2.1%;
 
@@ -197,9 +202,11 @@ body{
 			}
 		}
 		li:nth-child(4){
+			
 			margin-right: 3%;
 		}
 		li:last-child{
+			
 			margin: 0;
 		}
 		li.link-active a{
@@ -209,11 +216,13 @@ body{
 		.link-personal-area{
 			margin-right:1%;
 			font-size: 0.8em;
-			
+			float:right;
 		}
-
+		.login{
+			float:right;
+		}
 		.logout{
-			
+			float:right;
 			font-size: 0.8em;
 			a{
 				line-height: 1;
