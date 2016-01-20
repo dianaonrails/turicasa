@@ -1,6 +1,11 @@
 .row.background-search
   .col-md-6.book-container.index-search
     =form_tag entries_path, :method => 'get', class:"form-group" do
+      .col-md-12.space-bottom
+        .col-md-2
+          =label_tag 'Ref:',nil, class:"lbl-text"
+        .col-md-10
+          =text_field_tag "ref",nil,placeholder: "Search with the ref of the house",class:"form-control", size:"80%"
       .col-md-6
         =image_tag('location-red.png')
         .select-region
@@ -55,6 +60,8 @@
                 h3.grey 
                   'Ref.
                   =entry.ref
+                
+                  //=raw(@locations.find_by_entrie(entry).location) 
                 .reviews
                   h4.grey
                     -if !entry.ranking.nil? && entry.ranking > 0

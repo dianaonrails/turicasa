@@ -198,6 +198,7 @@ class Entry < ActiveRecord::Base
 	scope :check_out, -> (check_out) { where whichdayend: check_out}
 	scope :country, -> (country) {where country: country}
 	scope :city, -> (city) {where city: city}
+	scope :ref, -> (ref) {where ref: ref}
 
 	def entries_reviews(entry)
 		begin

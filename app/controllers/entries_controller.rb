@@ -35,8 +35,8 @@ class EntriesController < ApplicationController
     end
 
     @cities = City.where(language: get_languageid(I18n.locale.to_s))
-      
     @countries = Country.where(language: get_languageid(I18n.locale.to_s))
+    @locations = Location.where(language: get_languageid(I18n.locale.to_s))
 
     puts @entries
     if @entries.first.blank?
@@ -68,6 +68,8 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     @owner = Owner.find(@entry.owner)
     @entries_review = EntriesReview.new
+    @location = Location.where(entrie:@entry.id, language:get_languageid(I18n.locale.to_s))
+
   end
 
   
@@ -130,7 +132,7 @@ class EntriesController < ApplicationController
     end
 
     def filtering_params(params)
-      params.slice(:region, :guests, :check_in,:check_out,:country,:city)
+      params.slice(:region, :guests, :check_in,:check_out,:country,:city,:ref)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
