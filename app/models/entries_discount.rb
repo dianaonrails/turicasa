@@ -2,10 +2,10 @@
 #
 # Table name: entries_discounts
 #
-#  id       :integer          not null
+#  id       :integer          not null, primary key
 #  entrie   :integer
 #  days     :integer
-#  type     :integer
+#  type_of  :integer
 #  discount :float(24)
 #  unit     :integer
 #  when     :integer

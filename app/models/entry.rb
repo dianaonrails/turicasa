@@ -186,6 +186,7 @@ class Entry < ActiveRecord::Base
 	has_many :entries_reviews
 	has_many :photos
 	has_many :prices
+	has_many :specialoffers
 
 	has_one :description
 

@@ -51,39 +51,66 @@
 				- @entries_discounts.each do |entry|
 					.property-item
 						-@entry = Entry.find(entry.entrie)
-						.col-md-12
+						.col-md-10.col-md-offset-1
 							h1.txt-property  
 								=@entry.name
-							.col-md-12.no-padding.image-display	
+							.col-md-12.no-padding.image-display.wrapper
 								=image_tag("http://www.cdpreisen.de/admin/upload/" +@entry.fotoprincipal)
-							h4.description
-								'Desconto de 
-								=entry.discount
-								'%
+								
+								.text
+									=link_to t('buttons.seemore'),entry_path(@entry.id)	
+							.col-md-12.no-padding
+								.discount
+									= Language.find(get_languageid(I18n.locale.to_s)).DISCOUNT
+									' 
+									=entry.discount
+									'%
+									'&nbsp;
+
+									=entry.days
+									' 
+									= Language.find(get_languageid(I18n.locale.to_s)).DAYS
+								
+								//.btt-see-more
+								//	=link_to t('buttons.seemore'), entry_path(@entry.id)
 							h5.dates 
-								'Datas: 
+								= Language.find(get_languageid(I18n.locale.to_s)).CERTAINDATES 
+								':  
 
 								=entry.date1.strftime('%d %B %Y') if !entry.date1.blank?
-								' a
+								' to
 								=entry.date2.strftime('%d %B %Y') if !entry.date1.blank?
-						.col-md-4.col-md-offset-3.btt-see-more
-							=link_to t('buttons.seemore'), entry_path(@entry.id)
+			.col-md-6.col-md-offset-3
+				.btt-see-more.space-top
+					=link_to t('buttons.seemore'), ''				
 							 
 		.col-md-6.news
 			h1.txt-center 
 				=t('home.news')
 			hr
-			.col-md-12.property-item
-				- @recent_entries.each do |entry|
-					.col-md-12
-						h1.txt-property 
-							=entry.name
-						.col-md-12.no-padding.image-display	
-							=image_tag("http://www.cdpreisen.de/admin/upload/" +entry.fotoprincipal)
-						h4.description 
-						h5.dates 
-							'Datas:
-							
-					.col-md-4.col-md-offset-3.btt-see-more
-						=link_to t('buttons.seemore'),entry_path(entry.id)	
+			.col-md-12
+				-if !@special_offers.blank?
+					- @special_offers.each do |entry|
+						.property-item
+							- @entry = Entry.find(entry.entrie)
+							.col-md-12
+								h1.txt-property 
+									=@entry.name
+								.col-md-12.no-padding.image-display.wrapper
+									=image_tag("http://www.cdpreisen.de/admin/upload/" +@entry.fotoprincipal)
+									.text
+										=link_to t('buttons.seemore'),entry_path(@entry.id)	
+								.discount
+									=raw(entry.description)
+								h5.dates 
+									= Language.find(get_languageid(I18n.locale.to_s)).CERTAINDATES 
+									':  
+									=entry.from.strftime('%d %B %Y') if !entry.from.blank?
+									' to
+									=entry.to.strftime('%d %B %Y') if !entry.to.blank?
+							//.col-md-4.col-md-offset-3.btt-see-more
+							//	=link_to t('buttons.seemore'),entry_path(entry.id)	
+			.col-md-6.col-md-offset-3
+				.btt-see-more.space-top
+					=link_to t('buttons.seemore'), ''		
 =render 'layouts/footer'			

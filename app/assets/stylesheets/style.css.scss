@@ -3,6 +3,7 @@ $black:#333333;
 $light-grey:#cccccc;
 $grey:#727272;
 $dark-red:#b02427;
+$orange:#FF5214;
 
 @font-face {
 	font-family: 'Charter';
@@ -22,6 +23,10 @@ body{
 	padding: 0;
 }
 
+.white{
+	color:white;
+}
+
 .grey{
 	color:$grey;
 	font-weight:bold;
@@ -38,6 +43,17 @@ body{
 
 .txt-center{
 	text-align: center;
+}
+
+.list-menu{
+	
+	list-style: none;
+	li{
+		font-size: 1.2em;
+		display: inline;
+		font-weight: bold;
+	}
+	
 }
 
 .red{
@@ -295,7 +311,7 @@ hr{
 }
 
 .txt-property{
-	font-size: 1.5em;
+	font-size: 2em;
 	font-family: 'Charter';
 	font-weight: bold;
 }
@@ -303,6 +319,39 @@ hr{
 .description{
 	font-family: 'Charter';
 	font-size:1.2em;
+}
+
+.discount{
+	font-family: 'Charter';
+	color:$grey;
+	float:left;
+	width:100%;
+	font-size:1.5em;
+}
+.wrapper .text {
+	position:absolute;
+	top:40%;
+	bottom:0;
+	left:0;
+	right:0;
+	text-align:center;
+	width:50%;
+	height:300px;
+	margin:0 auto;
+	visibility:hidden;
+}
+
+.wrapper:hover {
+	img{
+		opacity: 0.5;
+	}
+	.text {
+		a{
+			color:$dark-red;
+			font-size: 2em;
+		}
+		visibility:visible;
+	}
 }
 
 .dates{
@@ -313,6 +362,8 @@ hr{
 
 .btt-see-more{
 	
+	width:100%;
+	margin:0 auto;
 	a,input{
 		padding-top: 2%;
 		padding-bottom: 2%;
@@ -357,7 +408,8 @@ hr{
 }
 
 .property-item{
-	margin-bottom:3%;
+	margin-bottom:5%;
+	float:left;
 }
 
 /***************** GENERAL PUBLIC *********************/

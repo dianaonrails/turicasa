@@ -4,6 +4,20 @@
 			p#notice = notice
 		.col-md-12
 			hr
+			ul.list-menu
+				li =link_to 'Search entries >', entries_path
+				'&nbsp;
+				li 
+					= Region.where(optionnumber: @entry.region, language: get_languageid(I18n.locale.to_s)).first.region
+					'  >
+				'&nbsp;
+				li 
+					= Country.where(optionnumber: @entry.country, language: get_languageid(I18n.locale.to_s)).first.country
+					'  >
+				'&nbsp;	
+				li = City.where(optionnumber: @entry.city,language: get_languageid(I18n.locale.to_s)).first.city
+		.col-md-12
+			hr
 			.col-md-4	
 				h1 =@entry.name
 				h2.grey
@@ -40,7 +54,7 @@
 		.col-md-12
 			.col-md-8
 				h2.grey Photos	
-				- @photos = @entry.photos(@entry).first(6)
+				- @photos = @entry.photos(@entry)
 				.col-md-12
 					div id="blueimp-gallery" class="blueimp-gallery"
 						div class="slides"
@@ -101,7 +115,7 @@
 						-if session[:client_id]
 							=submit_tag t("entries.booknow"), class:'btt-black'
 						-else
-							=link_to 'Register to book', new_client_session_path
+							=link_to 'Register to book', new_client_session_path, class:"white"
 
 			hr.line-bottom
 		.col-md-12

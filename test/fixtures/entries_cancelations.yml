@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: locations
+# Table name: entries_cancelations
 #
-#  id       :integer          not null
-#  entrie   :integer
-#  language :integer
-#  location :text(4294967295)
+#  id         :integer          not null, primary key
+#  entrie     :integer
+#  days       :integer
+#  percentage :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

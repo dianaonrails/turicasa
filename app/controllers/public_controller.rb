@@ -10,6 +10,6 @@ class PublicController < ApplicationController
 			@regions = 	Region.where(language: 4)	
 		end
 		@entries_discounts = EntriesDiscount.joins(:entry).limit(2)
-		@recent_entries = Entry.order("id desc").limit(2)
+		@special_offers = Specialoffer.joins(:entry).where(homepage: true, language: get_languageid(I18n.locale.to_s)).limit(2)
 	end	
 end

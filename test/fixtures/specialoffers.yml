@@ -1,11 +1,15 @@
 # == Schema Information
 #
-# Table name: locations
+# Table name: specialoffers
 #
-#  id       :integer          not null
-#  entrie   :integer
-#  language :integer
-#  location :text(4294967295)
+#  id          :integer          not null
+#  entrie      :integer
+#  language    :integer
+#  name        :string(200)
+#  from        :date
+#  to          :date
+#  description :text(4294967295)
+#  price       :float(24)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

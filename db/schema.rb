@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112012518) do
+ActiveRecord::Schema.define(version: 20160121173844) do
 
   create_table "access", force: :cascade do |t|
     t.integer "property", limit: 4
@@ -592,24 +592,26 @@ ActiveRecord::Schema.define(version: 20160112012518) do
     t.integer "visits",                      limit: 4,     default: 0
   end
 
-  create_table "entries_cancelations", id: false, force: :cascade do |t|
-    t.integer "id",         limit: 4, null: false
+  create_table "entries_cancelations", force: :cascade do |t|
     t.integer "entrie",     limit: 4
     t.integer "days",       limit: 4
     t.integer "percentage", limit: 4
   end
 
-  create_table "entries_discounts", id: false, force: :cascade do |t|
-    t.integer "id",       limit: 4,  null: false
+  add_index "entries_cancelations", ["entrie"], name: "entrie", using: :btree
+
+  create_table "entries_discounts", force: :cascade do |t|
     t.integer "entrie",   limit: 4
     t.integer "days",     limit: 4
-    t.integer "type",     limit: 4
+    t.integer "type_of",  limit: 4
     t.float   "discount", limit: 24
     t.integer "unit",     limit: 4
     t.integer "when",     limit: 4
     t.date    "date1"
     t.date    "date2"
   end
+
+  add_index "entries_discounts", ["entrie"], name: "entrie", using: :btree
 
   create_table "entries_reviews", force: :cascade do |t|
     t.integer "entrie", limit: 4
@@ -1263,7 +1265,7 @@ ActiveRecord::Schema.define(version: 20160112012518) do
     t.string  "option",       limit: 40
   end
 
-  create_table "options_smoking", id: false, force: :cascade do |t|
+  create_table "options_smokings", id: false, force: :cascade do |t|
     t.integer "id",           limit: 4,  null: false
     t.integer "optionnumber", limit: 4
     t.integer "language",     limit: 4
@@ -1500,6 +1502,7 @@ ActiveRecord::Schema.define(version: 20160112012518) do
     t.date    "to"
     t.text    "description", limit: 4294967295
     t.float   "price",       limit: 24
+    t.boolean "homepage",    limit: 1
   end
 
   create_table "tags", id: false, force: :cascade do |t|
